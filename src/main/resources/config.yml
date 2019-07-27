@@ -1,0 +1,11 @@
+## PlayerTags - v1.0 ##
+
+settings:
+    gui:
+      title: "Player Tags ({0}/{1} Unlocked)"
+
+tags:
+  example:
+        prefix: "&7[Example]"
+        description: "This is an example tag, r/woosh"
+        permission: false
