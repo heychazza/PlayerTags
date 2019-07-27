@@ -6,3 +6,9 @@ website: https://plugins.gg/
 description: "Let players use custom tag prefixes beside their name."
 softdepend: ["PlaceholderAPI", "WorldGuard"]
 api-version: "1.13"
+
+commands:
+  playertags:
+    description: PlayerTags commands
+    usage: ""
+    aliases: ["tags"]

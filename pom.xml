@@ -157,6 +157,11 @@
             <artifactId>Item-NBT-API</artifactId>
             <version>3d06992b2a</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.hazebyte</groupId>
+            <artifactId>base</artifactId>
+            <version>0.0.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>
