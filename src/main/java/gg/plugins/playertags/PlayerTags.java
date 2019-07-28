@@ -10,6 +10,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class PlayerTags extends JavaPlugin {
@@ -21,8 +24,8 @@ public class PlayerTags extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        setupTags();
         setupConfig();
+        setupTags();
 
         commandManager = new CommandManager(this);
         getCommand("playertags").setExecutor(new CommandExecutor(this));
@@ -45,8 +48,8 @@ public class PlayerTags extends JavaPlugin {
 
     public void handleReload() {
         reloadConfig();
-        setupTags();
         setupConfig();
+        setupTags();
     }
 
     public void setupTags() {
@@ -57,7 +60,13 @@ public class PlayerTags extends JavaPlugin {
             int slot = getConfig().getInt("tags." + tag + ".slot", -1);
             boolean perm = getConfig().getBoolean("tags." + tag + ".description", false);
 
-            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot));
+            String hasPermName = getConfig().getString("tags." + tag + ".item.has-perm.name", Lang.GUI_TAG_HAS_PERM_NAME.asString());
+            List<String> hasPermLore = getConfig().getStringList("tags." + tag + ".item.has-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.has-perm.lore");
+
+            String hasNoPermName = getConfig().getString("tags." + tag + ".item.no-perm.name", Lang.GUI_TAG_HAS_NO_PERM_NAME.asString());
+            List<String> hasNoPermLore = getConfig().getStringList("tags." + tag + ".item.no-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.no-perm.lore");
+
+            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore,true).withItem(hasNoPermName, hasNoPermLore,false));
             log("Tag '" + tag + "' added.");
         });
 

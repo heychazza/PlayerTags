@@ -158,9 +158,9 @@
             <version>3d06992b2a</version>
         </dependency>
         <dependency>
-            <groupId>com.github.Chazza</groupId>
+            <groupId>com.github.Hazebyte</groupId>
             <artifactId>base</artifactId>
-            <version>dev-SNAPSHOT</version>
+            <version>-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

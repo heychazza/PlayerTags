@@ -22,6 +22,10 @@ public enum Lang
     RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s)."),
 
     GUI_TITLE("Player Tags ({1}/{2} Unlocked)"),
+    GUI_TAG_HAS_PERM_NAME("{0}"),
+    GUI_TAG_HAS_PERM_LORE("{1}", "{2}", "{3}"),
+    GUI_TAG_HAS_NO_PERM_NAME("{0}"),
+    GUI_TAG_HAS_NO_PERM_LORE("{1}", "{2}", "{3}"),
     TAG_SELECTED("{0} &7Selected the '{1}' tag.")
 
     ;
@@ -41,7 +45,7 @@ public enum Lang
         return "message." + this.name().toLowerCase().toLowerCase();
     }
     
-    private String format(String s, final Object... objects) {
+    public static String format(String s, final Object... objects) {
         for (int i = 0; i < objects.length; ++i) {
             s = s.replace("{" + i + "}", String.valueOf(objects[i]));
         }

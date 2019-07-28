@@ -1,6 +1,13 @@
 package gg.plugins.playertags.api;
 
+import com.hazebyte.base.util.ItemBuilder;
+import gg.plugins.playertags.config.Lang;
+import gg.plugins.playertags.util.Common;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tag {
 
@@ -8,7 +15,10 @@ public class Tag {
     private String prefix;
     private String description;
     private int slot;
+    private ItemBuilder itemHasPerm;
+    private ItemBuilder itemNoPerm;
     private boolean permission;
+
     public Tag(String id) {
         this.id = id.toLowerCase();
     }
@@ -41,7 +51,7 @@ public class Tag {
     }
 
     public boolean needPermission(Player player) {
-        if(permission) return player.hasPermission("playertags.use." + getId());
+        if (permission) return player.hasPermission("playertags.use." + getId());
         return true;
     }
 
@@ -52,5 +62,35 @@ public class Tag {
 
     public int getSlot() {
         return slot;
+    }
+
+    public Tag withItem(String name, List<String> lore, boolean hasPerm) {
+        String translatedName = Lang.format(name, getId(), getPrefix(), getDescription()).replace("{id}", getId()).replace("{prefix}", getPrefix()).replace("{description}", getDescription());
+        List<String> translatedLore = new ArrayList<>();
+
+        lore.forEach(loreStr -> {
+            translatedLore.add(Lang.format(loreStr, getId(), getPrefix(), getDescription()).replace("{id}", getId()).replace("{prefix}", getPrefix()).replace("{description}", getDescription()));
+        });
+
+        if(hasPerm) {
+            itemHasPerm = new ItemBuilder(Material.NAME_TAG)
+                    .displayName(translatedName)
+                    .lore(translatedLore);
+        } else {
+            itemNoPerm = new ItemBuilder(Material.NAME_TAG)
+                    .displayName(translatedName)
+                    .lore(translatedLore);
+
+        }
+
+        return this;
+    }
+
+    public ItemBuilder getItemHasPerm() {
+        return itemHasPerm;
+    }
+
+    public ItemBuilder getItemNoPerm() {
+        return itemNoPerm;
     }
 }
