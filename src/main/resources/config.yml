@@ -2,7 +2,7 @@
 
 settings:
     gui:
-      title: "[{0}/{1}] Player Tags ({2}/{3} Unlocked)"
+      size: 45 # -1 = dynamic
 
 tags:
   example:

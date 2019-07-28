@@ -1,5 +1,7 @@
 package gg.plugins.playertags.config;
 
+import gg.plugins.playertags.PlayerTags;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,13 +25,12 @@ public enum Lang
     TAG_SELECTED("{0} &7Selected the '{1}' tag.")
 
     ;
-    
+
     private String message;
-    private static Config config;
     private static FileConfiguration c;
     
     Lang(final String... def) {
-        this.message = String.join("\n", (CharSequence[])def);
+        this.message = String.join("\n", def);
     }
     
     private String getMessage() {
@@ -37,7 +38,7 @@ public enum Lang
     }
     
     public String getPath() {
-        return this.name();
+        return "message." + this.name().toLowerCase().toLowerCase();
     }
     
     private String format(String s, final Object... objects) {
@@ -47,22 +48,17 @@ public enum Lang
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 
-    public static boolean init(final Config wrapper) {
-        wrapper.loadConfig();
-        if (wrapper.getConfig() == null) {
-            return false;
-        }
-        Lang.config = wrapper;
-        Lang.c = wrapper.getConfig();
+    public static boolean init(PlayerTags playerTags) {
+        Lang.c = playerTags.getConfig();
         for (final Lang value : values()) {
             if (value.getMessage().split("\n").length == 1) {
-                Lang.c.addDefault("message." + value.getPath().toLowerCase(), value.getMessage());
+                Lang.c.addDefault(value.getPath().toLowerCase(), value.getMessage());
             } else {
-                Lang.c.addDefault("message." + value.getPath().toLowerCase(), value.getMessage().split("\n"));
+                Lang.c.addDefault(value.getPath().toLowerCase(), value.getMessage().split("\n"));
             }
         }
         Lang.c.options().copyDefaults(true);
-        wrapper.saveConfig();
+        playerTags.saveConfig();
         return true;
     }
     
@@ -84,25 +80,16 @@ public enum Lang
             Arrays.stream(this.asString(args).split("\n")).forEach(sender::sendMessage);
         }
     }
-    
-    public static Config getConfig() {
-        return Lang.config;
-    }
 
     public String asString(final Object... objects) {
         Optional<String> opt = Optional.empty();
-        if (Lang.c.contains(this.name())) {
-            if (Lang.c.isList(this.name())) {
-                opt = Optional.of(String.join("\n", Lang.c.getStringList(this.name())));
-            } else if (Lang.c.isString(this.name())) {
-                opt = Optional.ofNullable(Lang.c.getString(this.name()));
+        if (Lang.c.contains(this.getPath())) {
+            if (Lang.c.isList(getPath())) {
+                opt = Optional.of(String.join("\n", Lang.c.getStringList(this.getPath())));
+            } else if (Lang.c.isString(this.getPath())) {
+                opt = Optional.ofNullable(Lang.c.getString(this.getPath()));
             }
         }
         return this.format(opt.orElse(this.message), objects);
-    }
-    
-    public static void reload() {
-        Lang.config.loadConfig();
-        Lang.c = Lang.config.getConfig();
     }
 }

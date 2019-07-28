@@ -54,9 +54,10 @@ public class PlayerTags extends JavaPlugin {
         Objects.requireNonNull(getConfig().getConfigurationSection("tags")).getKeys(false).forEach(tag -> {
             String prefix = getConfig().getString("tags." + tag + ".prefix", "&c[None]");
             String desc = getConfig().getString("tags." + tag + ".description", "You didn't specify one.. oops?");
+            int slot = getConfig().getInt("tags." + tag + ".slot", -1);
             boolean perm = getConfig().getBoolean("tags." + tag + ".description", false);
 
-            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm));
+            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot));
             log("Tag '" + tag + "' added.");
         });
 
@@ -64,7 +65,7 @@ public class PlayerTags extends JavaPlugin {
     }
 
     public void setupConfig() {
-        Lang.init(new Config(this, "config.yml"));
+        Lang.init(this);
     }
 
     @Override

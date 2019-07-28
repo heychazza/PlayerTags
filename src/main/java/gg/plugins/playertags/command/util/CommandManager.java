@@ -3,6 +3,7 @@ package gg.plugins.playertags.command.util;
 import gg.plugins.playertags.PlayerTags;
 import gg.plugins.playertags.command.ListCommand;
 import gg.plugins.playertags.command.ReloadCommand;
+import gg.plugins.playertags.command.VersionCommand;
 import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.util.TagsPage;
 import org.bukkit.command.CommandSender;
@@ -30,7 +31,8 @@ public class CommandManager {
 
         List<Class<?>> commandClasses = Arrays.asList(
                 ListCommand.class,
-                ReloadCommand.class
+                ReloadCommand.class,
+                VersionCommand.class
         );
 
         for (Class cmdClass : commandClasses) {
