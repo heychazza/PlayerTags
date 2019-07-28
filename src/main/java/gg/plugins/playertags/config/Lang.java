@@ -17,7 +17,10 @@ public enum Lang
     COMMAND_INVALID("{0} &7That command doesn't exist, use &f/tags help&7."),
     COMMAND_UNKNOWN("{0} &7That player couldn't be found."),
 
-    RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s).")
+    RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s)."),
+
+    GUI_TITLE("Player Tags ({1}/{2} Unlocked)"),
+    TAG_SELECTED("{0} &7Selected the '{1}' tag.")
 
     ;
     

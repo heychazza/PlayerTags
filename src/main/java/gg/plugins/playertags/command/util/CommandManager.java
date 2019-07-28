@@ -60,10 +60,9 @@ public class CommandManager {
 
         // Command: /tags
         if (command == null) {
-
             if(sender instanceof Player) {
                 Player player = (Player) sender;
-                TagsPage page = new TagsPage(plugin, "Tags (" + plugin.getTagManager().getTags().size() + ")", player);
+                TagsPage page = new TagsPage(plugin, player);
                 page.open(player);
             } else {
                 Lang.COMMAND_PLAYER_ONLY.send(sender, Lang.PREFIX.asString());

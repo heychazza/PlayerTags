@@ -123,7 +123,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14.2-R0.1-SNAPSHOT</version>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -158,9 +158,9 @@
             <version>3d06992b2a</version>
         </dependency>
         <dependency>
-            <groupId>com.github.hazebyte</groupId>
+            <groupId>com.github.Chazza</groupId>
             <artifactId>base</artifactId>
-            <version>0.0.0</version>
+            <version>dev-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

@@ -6,7 +6,9 @@ import gg.plugins.playertags.command.util.CommandManager;
 import gg.plugins.playertags.config.Config;
 import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.config.TagManager;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.Objects;
 
