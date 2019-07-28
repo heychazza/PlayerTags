@@ -1,5 +1,7 @@
 package gg.plugins.playertags.api;
 
+import org.bukkit.entity.Player;
+
 public class Tag {
 
     private String id;
@@ -7,7 +9,7 @@ public class Tag {
     private String description;
     private boolean permission;
     public Tag(String id) {
-        this.id = id;
+        this.id = id.toLowerCase();
     }
 
     public String getId() {
@@ -37,7 +39,8 @@ public class Tag {
         return this;
     }
 
-    public boolean needPermission() {
-        return permission;
+    public boolean needPermission(Player player) {
+        if(permission) return player.hasPermission("playertags.use." + getId());
+        return true;
     }
 }

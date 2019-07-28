@@ -3,6 +3,8 @@ package gg.plugins.playertags;
 import gg.plugins.playertags.api.Tag;
 import gg.plugins.playertags.command.util.CommandExecutor;
 import gg.plugins.playertags.command.util.CommandManager;
+import gg.plugins.playertags.config.Config;
+import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.config.TagManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,13 +19,14 @@ public class PlayerTags extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        setupTags();
+        setupConfig();
+
         commandManager = new CommandManager(this);
         getCommand("playertags").setExecutor(new CommandExecutor(this));
         if (getCommand("playertags").getPlugin() != this) {
             getLogger().warning("/playertags command is being handled by plugin other than " + getDescription().getName() + ". You must use /playertags:playertags instead.");
         }
-        
-        setupTags();
     }
 
     public TagManager getTagManager() {
@@ -35,7 +38,13 @@ public class PlayerTags extends JavaPlugin {
     }
 
     public void log(String message) {
-        if(getConfig().getBoolean("debug", false)) getLogger().info("[DEBUG] " + message);
+        if (getConfig().getBoolean("debug", false)) getLogger().info("[DEBUG] " + message);
+    }
+
+    public void handleReload() {
+        reloadConfig();
+        setupTags();
+        setupConfig();
     }
 
     public void setupTags() {
@@ -50,6 +59,10 @@ public class PlayerTags extends JavaPlugin {
         });
 
         log("A total of " + tagManager.getTags().size() + " tag(s) registered.");
+    }
+
+    public void setupConfig() {
+        Lang.init(new Config(this, "config.yml"));
     }
 
     @Override

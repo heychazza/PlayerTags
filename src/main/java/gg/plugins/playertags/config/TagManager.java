@@ -2,8 +2,11 @@ package gg.plugins.playertags.config;
 
 import gg.plugins.playertags.PlayerTags;
 import gg.plugins.playertags.api.Tag;
+import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TagManager {
@@ -21,5 +24,11 @@ public class TagManager {
 
     public void addTag(String id, Tag tag) {
         getTags().put(id, tag);
+    }
+
+    public List<Tag> getTags(Player player) {
+        List<Tag> tags = new ArrayList<>();
+        getTags().entrySet().stream().filter((tag -> tag.getValue().needPermission(player))).forEach(tag -> tags.add(tag.getValue()));
+        return tags;
     }
 }

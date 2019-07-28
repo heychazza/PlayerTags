@@ -10,12 +10,14 @@ import java.util.Optional;
 
 public enum Lang
 {
-    PREFIX("&8[&6Tools&8]"),
-    MAIN_COMMAND("{0} &7Running &f{1} &7version &6{2} &7by &e{3}&7."),
+    PREFIX("&8[&bTags&8]"),
+    MAIN_COMMAND("{0} &7Running &f{1} &7version &3{2} &7by &b{3}&7."),
     COMMAND_NO_PERMISSION("{0} &cYou don't have permission to do that."),
-    COMMAND_PLAYER_ONLY("{0} &cThe command or args specified can only be used by a player."),
-    COMMAND_INVALID("{0} &cThat command doesn't exist, use &f/tags help&c."),
-    COMMAND_UNKNOWN("{0} &cThat player couldn't be found."),
+    COMMAND_PLAYER_ONLY("{0} &7The command or args specified can only be used by a player."),
+    COMMAND_INVALID("{0} &7That command doesn't exist, use &f/tags help&7."),
+    COMMAND_UNKNOWN("{0} &7That player couldn't be found."),
+
+    RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s).")
 
     ;
     

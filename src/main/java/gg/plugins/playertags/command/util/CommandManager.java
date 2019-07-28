@@ -2,6 +2,7 @@ package gg.plugins.playertags.command.util;
 
 import gg.plugins.playertags.PlayerTags;
 import gg.plugins.playertags.command.ListCommand;
+import gg.plugins.playertags.command.ReloadCommand;
 import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.util.TagsPage;
 import org.bukkit.command.CommandSender;
@@ -28,7 +29,8 @@ public class CommandManager {
         this.plugin = plugin;
 
         List<Class<?>> commandClasses = Arrays.asList(
-                ListCommand.class
+                ListCommand.class,
+                ReloadCommand.class
         );
 
         for (Class cmdClass : commandClasses) {
@@ -61,7 +63,7 @@ public class CommandManager {
 
             if(sender instanceof Player) {
                 Player player = (Player) sender;
-                TagsPage page = new TagsPage(plugin, "Tags (" + plugin.getTagManager().getTags().size() + ")", 1);
+                TagsPage page = new TagsPage(plugin, "Tags (" + plugin.getTagManager().getTags().size() + ")", player);
                 page.open(player);
             } else {
                 Lang.COMMAND_PLAYER_ONLY.send(sender, Lang.PREFIX.asString());

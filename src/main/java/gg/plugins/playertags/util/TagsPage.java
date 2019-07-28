@@ -10,13 +10,14 @@ import com.hazebyte.base.util.ItemBuilder;
 import gg.plugins.playertags.PlayerTags;
 import gg.plugins.playertags.api.Tag;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 import java.util.Map;
 
 public class TagsPage extends Base {
     private int counter = 0;
 
-    public TagsPage(PlayerTags plugin, String title, int pages) {
+    public TagsPage(PlayerTags plugin, String title, Player player) {
         super(plugin, title, Size.from(27));
 
         int slot = 0;
@@ -26,7 +27,7 @@ public class TagsPage extends Base {
             Button tagBtn = new Button(new ItemBuilder(Material.NAME_TAG).displayName(Common.translate(tagObj.getPrefix())).lore(
                     Common.translate("&7Tag: &f" + tagObj.getId()),
                     Common.translate("&7Desc: &f" + tagObj.getDescription()),
-                    Common.translate("&7Perm: &f" + tagObj.needPermission())
+                    Common.translate("&7Perm: &f" + tagObj.needPermission(player))
             ).asItemStack());
             this.attach(tagBtn);
             this.setIcon(slot, tagBtn);
