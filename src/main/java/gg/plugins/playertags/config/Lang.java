@@ -17,6 +17,9 @@ public enum Lang {
     COMMAND_INVALID("{0} &7That command doesn't exist, use &f/tags help&7."),
     COMMAND_UNKNOWN("{0} &7That player couldn't be found."),
 
+    LIST_COMMAND_SELF("{0} &7Tags ({1}): {2}"),
+    LIST_COMMAND_OTHER("{0} &7{1}'s Tags ({2}): {3}"),
+    LIST_SEPARATOR("&f{0}&7, "),
     RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s)."),
 
     GUI_TITLE("Player Tags ({1}/{2} Unlocked)"),
@@ -28,7 +31,12 @@ public enum Lang {
     TAG_UNSELECTED("{0} &7Unselected the '{1}' tag."),
 
     NO_TAG_ID("None"),
-    NO_TAG_PREFIX("");
+    NO_TAG_PREFIX(""),
+
+    HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),
+    HELP_COMMAND_FORMAT(" &b/tags {1} &8- &7{2}"),
+    HELP_COMMAND_FOOTER("", "{0} &7Total of &f{1} &7commands."),
+    ;
 
     private String message;
     private static FileConfiguration c;

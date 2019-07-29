@@ -64,7 +64,7 @@ public class PlayerTags extends JavaPlugin {
             String prefix = getConfig().getString("tags." + tag + ".prefix", "&c[None]");
             String desc = getConfig().getString("tags." + tag + ".description", "You didn't specify one.. oops?");
             int slot = getConfig().getInt("tags." + tag + ".slot", -1);
-            boolean perm = getConfig().getBoolean("tags." + tag + ".description", false);
+            boolean perm = getConfig().getBoolean("tags." + tag + ".permission", false);
 
             String hasPermName = getConfig().getString("tags." + tag + ".item.has-perm.name", Lang.GUI_TAG_HAS_PERM_NAME.asString());
             List<String> hasPermLore = getConfig().getStringList("tags." + tag + ".item.has-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.has-perm.lore");
@@ -72,7 +72,7 @@ public class PlayerTags extends JavaPlugin {
             String hasNoPermName = getConfig().getString("tags." + tag + ".item.no-perm.name", Lang.GUI_TAG_HAS_NO_PERM_NAME.asString());
             List<String> hasNoPermLore = getConfig().getStringList("tags." + tag + ".item.no-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.no-perm.lore");
 
-            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withItem(hasNoPermName, hasNoPermLore, false));
+            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
             log("Tag '" + tag + "' added.");
         });
 
@@ -143,6 +143,14 @@ public class PlayerTags extends JavaPlugin {
         PlayerData.users.forEach(((uuid, playerData) -> {
             getStorageHandler().pushData(uuid);
         }));
+
+        getTagManager().getTags().forEach((tagName, tagObj) -> {
+            if(!tagObj.persist()) return;
+            getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
+            getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
+        });
+
+        saveConfig();
     }
 
     private void hook(final String plugin) {

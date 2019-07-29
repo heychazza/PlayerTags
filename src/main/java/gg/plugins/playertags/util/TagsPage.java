@@ -29,9 +29,7 @@ public class TagsPage extends Base {
         int guiSlots = plugin.getConfig().getInt("settings.gui.size", 27);
         int playerTagCount = 0;
         for (Tag tag : plugin.getTagManager().getTags().values()) {
-
             boolean hasPerm = tag.needPermission(player);
-
             if (hasPerm) playerTagCount++;
 
             ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();
@@ -45,6 +43,8 @@ public class TagsPage extends Base {
             if (hasPerm) tagBtn.setProperty("id", tag.getId());
 
             tagBtn.setAction(buttonClickEvent -> {
+                if (!hasPerm) return;
+
                 if (tag.getId().equalsIgnoreCase(playerData.getTag())) {
                     Lang.TAG_UNSELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
                     playerData.setTag(null);

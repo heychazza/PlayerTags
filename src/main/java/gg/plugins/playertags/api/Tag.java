@@ -2,7 +2,6 @@ package gg.plugins.playertags.api;
 
 import com.hazebyte.base.util.ItemBuilder;
 import gg.plugins.playertags.config.Lang;
-import gg.plugins.playertags.util.Common;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -18,6 +17,7 @@ public class Tag {
     private ItemBuilder itemHasPerm;
     private ItemBuilder itemNoPerm;
     private boolean permission;
+    private boolean persist;
 
     public Tag(String id) {
         this.id = id.toLowerCase();
@@ -51,8 +51,8 @@ public class Tag {
     }
 
     public boolean needPermission(Player player) {
-        if (permission) return player.hasPermission("playertags.use." + getId());
-        return true;
+        if (!permission) return true;
+        return player.hasPermission("playertags.use." + getId());
     }
 
     public Tag withSlot(int slot) {
@@ -72,7 +72,7 @@ public class Tag {
             translatedLore.add(Lang.format(loreStr, getId(), getPrefix(), getDescription()).replace("{id}", getId()).replace("{prefix}", getPrefix()).replace("{description}", getDescription()));
         });
 
-        if(hasPerm) {
+        if (hasPerm) {
             itemHasPerm = new ItemBuilder(Material.NAME_TAG)
                     .displayName(translatedName)
                     .lore(translatedLore);
@@ -92,5 +92,14 @@ public class Tag {
 
     public ItemBuilder getItemNoPerm() {
         return itemNoPerm;
+    }
+
+    public Tag withPersist(boolean persist) {
+        this.persist = persist;
+        return this;
+    }
+
+    public boolean persist() {
+        return persist;
     }
 }
