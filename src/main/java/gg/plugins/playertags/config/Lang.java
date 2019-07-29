@@ -25,6 +25,7 @@ public enum Lang {
     GUI_TAG_HAS_NO_PERM_NAME("{0}"),
     GUI_TAG_HAS_NO_PERM_LORE("{1}", "{2}", "{3}"),
     TAG_SELECTED("{0} &7Selected the '{1}' tag."),
+    TAG_UNSELECTED("{0} &7Unselected the '{1}' tag."),
 
     NO_TAG_ID("None"),
     NO_TAG_PREFIX("");
