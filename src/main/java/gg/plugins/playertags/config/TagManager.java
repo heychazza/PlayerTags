@@ -31,4 +31,8 @@ public class TagManager {
         getTags().entrySet().stream().filter((tag -> tag.getValue().needPermission(player))).forEach(tag -> tags.add(tag.getValue()));
         return tags;
     }
+
+    public Tag getTag(String id) {
+        return getTags().values().stream().filter(tag -> tag.getId().equalsIgnoreCase(id)).findFirst().orElse(null);
+    }
 }

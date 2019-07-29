@@ -1,7 +1,6 @@
 package gg.plugins.playertags.config;
 
 import gg.plugins.playertags.PlayerTags;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,8 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.Optional;
 
-public enum Lang
-{
+public enum Lang {
     PREFIX("&8[&bTags&8]"),
     MAIN_COMMAND("{0} &7Running &f{1} &7version &3{2} &7by &b{3}&7."),
     COMMAND_NO_PERMISSION("{0} &cYou don't have permission to do that."),
@@ -26,25 +24,26 @@ public enum Lang
     GUI_TAG_HAS_PERM_LORE("{1}", "{2}", "{3}"),
     GUI_TAG_HAS_NO_PERM_NAME("{0}"),
     GUI_TAG_HAS_NO_PERM_LORE("{1}", "{2}", "{3}"),
-    TAG_SELECTED("{0} &7Selected the '{1}' tag.")
+    TAG_SELECTED("{0} &7Selected the '{1}' tag."),
 
-    ;
+    NO_TAG_ID("None"),
+    NO_TAG_PREFIX("");
 
     private String message;
     private static FileConfiguration c;
-    
+
     Lang(final String... def) {
         this.message = String.join("\n", def);
     }
-    
+
     private String getMessage() {
         return this.message;
     }
-    
+
     public String getPath() {
         return "message." + this.name().toLowerCase().toLowerCase();
     }
-    
+
     public static String format(String s, final Object... objects) {
         for (int i = 0; i < objects.length; ++i) {
             s = s.replace("{" + i + "}", String.valueOf(objects[i]));
@@ -65,22 +64,21 @@ public enum Lang
         playerTags.saveConfig();
         return true;
     }
-    
+
     public void send(final Player player, final Object... args) {
         final String message = this.asString(args);
         Arrays.stream(message.split("\n")).forEach(player::sendMessage);
     }
-    
+
     public void sendRaw(final Player player, final Object... args) {
         final String message = this.asString(args);
         Arrays.stream(message.split("\n")).forEach(player::sendRawMessage);
     }
-    
+
     public void send(final CommandSender sender, final Object... args) {
         if (sender instanceof Player) {
-            this.send((Player)sender, args);
-        }
-        else {
+            this.send((Player) sender, args);
+        } else {
             Arrays.stream(this.asString(args).split("\n")).forEach(sender::sendMessage);
         }
     }
