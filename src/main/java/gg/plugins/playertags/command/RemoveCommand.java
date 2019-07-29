@@ -7,14 +7,11 @@ import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.util.Common;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class SetPrefixCommand {
-    @Command(aliases = {"setprefix"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>")
+public class RemoveCommand {
+    @Command(aliases = {"remove"}, about = "Remove a tag.", permission = "playertags.remove", usage = "remove <id>")
     public static void execute(final CommandSender sender, final PlayerTags plugin, final String[] args) {
 
-        if (args.length < 1) {
+        if (args.length == 0) {
             Lang.COMMAND_INVALID_SYNTAX.send(sender, Lang.PREFIX.asString());
             return;
         }
@@ -26,11 +23,9 @@ public class SetPrefixCommand {
             return;
         }
 
-        String prefix = Common.translate(args[1]);
-        tag.setPrefix(prefix);
-        plugin.getTagManager().getTags().put(tag.getId(), tag);
-        plugin.saveTags();
+        plugin.getTagManager().getTags().remove(tag.getId());
+        plugin.getConfig().set("tags." + tag.getId(), null);
         plugin.setupTags();
-        Lang.SET_PREFIX_COMMAND.send(sender, Lang.PREFIX.asString(), tagName, prefix);
+        Lang.REMOVE_COMMAND.send(sender, Lang.PREFIX.asString(), tagName);
     }
 }

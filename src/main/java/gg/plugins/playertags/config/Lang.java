@@ -26,6 +26,7 @@ public enum Lang {
     MAIN_COMMAND("{0} &7Running &f{1} &7version &3{2} &7by &b{3}&7."),
     RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s)."),
     CREATE_COMMAND("{0} &7Created tag &b'{1}'&7."),
+    REMOVE_COMMAND("{0} &7Removed tag &b'{1}'&7."),
     SET_PREFIX_COMMAND("{0} &7The prefix to &b'{1}' &7has been set to {2}&7."),
 
     HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),

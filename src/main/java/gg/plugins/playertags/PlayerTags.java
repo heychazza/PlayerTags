@@ -27,7 +27,7 @@ public class PlayerTags extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        handleReload(false);
+        handleReload();
         commandManager = new CommandManager(this);
         getCommand("playertags").setExecutor(new CommandExecutor(this));
         if (getCommand("playertags").getPlugin() != this) {
@@ -50,10 +50,10 @@ public class PlayerTags extends JavaPlugin {
         if (getConfig().getBoolean("debug", false)) getLogger().info("[DEBUG] " + message);
     }
 
-    public void handleReload(boolean reload) {
-        if (reload) reloadConfig();
-        else saveDefaultConfig();
-        setupConfig();
+    public void handleReload() {
+        saveDefaultConfig();
+        Lang.init(this);
+        reloadConfig();
         setupTags();
         setupStorage();
     }
@@ -75,9 +75,17 @@ public class PlayerTags extends JavaPlugin {
             tagManager.addTag(new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
             log("Tag '" + tag + "' added.");
         });
-
-        //populateTags();
         log("A total of " + tagManager.getTags().size() + " tag(s) registered.");
+    }
+
+    public void saveTags() {
+        getTagManager().getTags().forEach((tagName, tagObj) -> {
+            if (!tagObj.persist()) return;
+            getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
+            getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
+            getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());
+        });
+        saveConfig();
     }
 
     public void populateTags() {
@@ -92,10 +100,6 @@ public class PlayerTags extends JavaPlugin {
                     .withItem(Lang.GUI_TAG_HAS_NO_PERM_NAME.asString(), Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")), false));
             log("Populating.. fake tag 'tag" + i + "' added.");
         }
-    }
-
-    public void setupConfig() {
-        Lang.init(this);
     }
 
     public void setupStorage() {
@@ -144,14 +148,7 @@ public class PlayerTags extends JavaPlugin {
             getStorageHandler().pushData(uuid);
         }));
 
-        getTagManager().getTags().forEach((tagName, tagObj) -> {
-            if (!tagObj.persist()) return;
-            getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
-            getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
-            getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());
-        });
-
-        saveConfig();
+        saveTags();
     }
 
     private void hook(final String plugin) {

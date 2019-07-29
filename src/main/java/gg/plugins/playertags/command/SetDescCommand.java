@@ -7,11 +7,8 @@ import gg.plugins.playertags.config.Lang;
 import gg.plugins.playertags.util.Common;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class SetPrefixCommand {
-    @Command(aliases = {"setprefix"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>")
+public class SetDescCommand {
+    @Command(aliases = {"setdesc"}, about = "Set a tags description.", permission = "playertags.setdesc", usage = "setdesc <id> <prefix>")
     public static void execute(final CommandSender sender, final PlayerTags plugin, final String[] args) {
 
         if (args.length < 1) {
@@ -26,11 +23,17 @@ public class SetPrefixCommand {
             return;
         }
 
-        String prefix = Common.translate(args[1]);
-        tag.setPrefix(prefix);
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 1; i < args.length; i++) {
+            builder.append(Common.translate(args[i] + " "));
+        }
+
+        String desc = builder.toString().trim();
+        tag.setDescription(desc);
         plugin.getTagManager().getTags().put(tag.getId(), tag);
         plugin.saveTags();
         plugin.setupTags();
-        Lang.SET_PREFIX_COMMAND.send(sender, Lang.PREFIX.asString(), tagName, prefix);
+        Lang.SET_PREFIX_COMMAND.send(sender, Lang.PREFIX.asString(), tagName, desc);
     }
 }
