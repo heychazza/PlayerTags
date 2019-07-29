@@ -55,6 +55,10 @@ public class Tag {
         return player.hasPermission("playertags.use." + getId());
     }
 
+    public boolean requirePermission() {
+        return permission;
+    }
+
     public Tag withSlot(int slot) {
         this.slot = slot;
         return this;

@@ -51,7 +51,7 @@ public class PlayerTags extends JavaPlugin {
     }
 
     public void handleReload(boolean reload) {
-        if(reload) reloadConfig();
+        if (reload) reloadConfig();
         else saveDefaultConfig();
         setupConfig();
         setupTags();
@@ -72,7 +72,7 @@ public class PlayerTags extends JavaPlugin {
             String hasNoPermName = getConfig().getString("tags." + tag + ".item.no-perm.name", Lang.GUI_TAG_HAS_NO_PERM_NAME.asString());
             List<String> hasNoPermLore = getConfig().getStringList("tags." + tag + ".item.no-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.no-perm.lore");
 
-            tagManager.addTag(tag, new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
+            tagManager.addTag(new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
             log("Tag '" + tag + "' added.");
         });
 
@@ -83,7 +83,7 @@ public class PlayerTags extends JavaPlugin {
 
     public void populateTags() {
         for (int i = 0; i < 34; i++) {
-            tagManager.addTag("tag" + i, new Tag("tag" + i)
+            tagManager.addTag(new Tag("tag" + i)
                     .withPrefix("&7[Tag " + i + "]")
                     .withDescription("Example tag (" + i + ")")
                     .withPermission(false)
@@ -145,9 +145,10 @@ public class PlayerTags extends JavaPlugin {
         }));
 
         getTagManager().getTags().forEach((tagName, tagObj) -> {
-            if(!tagObj.persist()) return;
+            if (!tagObj.persist()) return;
             getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
             getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
+            getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());
         });
 
         saveConfig();

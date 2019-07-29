@@ -22,8 +22,8 @@ public class TagManager {
         return tags;
     }
 
-    public void addTag(String id, Tag tag) {
-        getTags().put(id, tag);
+    public void addTag(Tag tag) {
+        getTags().put(tag.getId(), tag);
     }
 
     public List<Tag> getTags(Player player) {
