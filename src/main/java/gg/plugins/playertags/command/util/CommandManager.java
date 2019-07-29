@@ -32,7 +32,8 @@ public class CommandManager {
                 ReloadCommand.class,
                 VersionCommand.class,
                 HelpCommand.class,
-                CreateCommand.class
+                CreateCommand.class,
+                SetPrefixCommand.class
         );
 
         for (Class cmdClass : commandClasses) {

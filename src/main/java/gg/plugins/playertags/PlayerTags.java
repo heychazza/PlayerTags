@@ -77,7 +77,6 @@ public class PlayerTags extends JavaPlugin {
         });
 
         //populateTags();
-
         log("A total of " + tagManager.getTags().size() + " tag(s) registered.");
     }
 
@@ -88,6 +87,7 @@ public class PlayerTags extends JavaPlugin {
                     .withDescription("Example tag (" + i + ")")
                     .withPermission(false)
                     .withSlot(-1)
+                    .withPersist(false)
                     .withItem(Lang.GUI_TAG_HAS_PERM_NAME.asString(), Arrays.asList(Lang.GUI_TAG_HAS_PERM_LORE.asString().split("\n")), true)
                     .withItem(Lang.GUI_TAG_HAS_NO_PERM_NAME.asString(), Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")), false));
             log("Populating.. fake tag 'tag" + i + "' added.");

@@ -32,6 +32,10 @@ public class Tag {
         return this;
     }
 
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
     public String getPrefix() {
         return prefix;
     }
@@ -39,6 +43,10 @@ public class Tag {
     public Tag withDescription(String description) {
         this.description = description;
         return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDescription() {

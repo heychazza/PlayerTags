@@ -14,7 +14,8 @@ public enum Lang {
     COMMAND_NO_PERMISSION("{0} &cYou don't have permission to do that."),
     COMMAND_PLAYER_ONLY("{0} &7The command or args specified can only be used by a player."),
     COMMAND_INVALID("{0} &7That command doesn't exist, use &f/tags help&7."),
-    COMMAND_ALREADY_EXISTS("{0} &7A tag by that id already exists."),
+    COMMAND_TAG_EXISTS("{0} &7A tag by that id already exists."),
+    COMMAND_TAG_UNKNOWN("{0} &7A tag by that id doesn't exist."),
     COMMAND_UNKNOWN("{0} &7That player couldn't be found."),
     COMMAND_INVALID_SYNTAX("{0} &7Invalid syntax, please use &f/tags help&7."),
 
@@ -25,6 +26,7 @@ public enum Lang {
     MAIN_COMMAND("{0} &7Running &f{1} &7version &3{2} &7by &b{3}&7."),
     RELOAD_COMMAND("{0} &7Configuration reloaded with {1} tag(s)."),
     CREATE_COMMAND("{0} &7Created tag &b'{1}'&7."),
+    SET_PREFIX_COMMAND("{0} &7The prefix to &b'{1}' &7has been set to {2}&7."),
 
     HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),
     HELP_COMMAND_FORMAT(" &b/tags {1} &8- &7{2}"),
