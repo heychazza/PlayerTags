@@ -28,6 +28,8 @@ public class SetPrefixCommand {
 
         String prefix = Common.translate(args[1]);
         tag.setPrefix(prefix);
+        plugin.getTagManager().getTags().put(tag.getId(), tag);
+        plugin.setupTags();
         Lang.SET_PREFIX_COMMAND.send(sender, Lang.PREFIX.asString(), tagName, prefix);
     }
 }
