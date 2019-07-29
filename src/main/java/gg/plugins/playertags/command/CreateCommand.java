@@ -4,6 +4,7 @@ import gg.plugins.playertags.PlayerTags;
 import gg.plugins.playertags.api.Tag;
 import gg.plugins.playertags.command.util.Command;
 import gg.plugins.playertags.config.Lang;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
@@ -32,7 +33,10 @@ public class CreateCommand {
         String hasNoPermName = Lang.GUI_TAG_HAS_NO_PERM_NAME.asString();
         List<String> hasNoPermLore = Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n"));
 
-        plugin.getTagManager().addTag(new Tag(tagName).withPrefix("&7[" + tagName + "]").withDescription("Default description..").withPermission(true).withSlot(-1).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
+        Material hasPermItem = Material.valueOf(plugin.getConfig().getString("tags." + tagName + ".item.has-perm.item", plugin.getConfig().getString("settings.gui.item.has-perm")));
+        Material hasNoPermItem = Material.valueOf(plugin.getConfig().getString("tags." + tagName + ".item.no-perm.item", plugin.getConfig().getString("settings.gui.item.no-perm")));
+
+        plugin.getTagManager().addTag(new Tag(tagName).withPrefix("&7[" + tagName + "]").withDescription("Default description..").withPermission(true).withSlot(-1).withItem(hasPermName, hasPermLore, hasPermItem, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, false));
         Lang.CREATE_COMMAND.send(sender, Lang.PREFIX.asString(), tagName);
     }
 }

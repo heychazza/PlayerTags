@@ -13,6 +13,7 @@ import gg.plugins.playertags.storage.mongodb.MongoDBHandler;
 import gg.plugins.playertags.storage.mysql.MySQLHandler;
 import gg.plugins.playertags.storage.sqlite.SQLiteHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -51,9 +52,9 @@ public class PlayerTags extends JavaPlugin {
     }
 
     public void handleReload() {
+        reloadConfig();
         saveDefaultConfig();
         Lang.init(this);
-        reloadConfig();
         setupTags();
         setupStorage();
     }
@@ -72,7 +73,10 @@ public class PlayerTags extends JavaPlugin {
             String hasNoPermName = getConfig().getString("tags." + tag + ".item.no-perm.name", Lang.GUI_TAG_HAS_NO_PERM_NAME.asString());
             List<String> hasNoPermLore = getConfig().getStringList("tags." + tag + ".item.no-perm.lore").size() == 0 ? Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")) : getConfig().getStringList("tags." + tag + ".item.no-perm.lore");
 
-            tagManager.addTag(new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, false));
+            Material hasPermItem = Material.valueOf(getConfig().getString("tags." + tag + ".item.has-perm.item", getConfig().getString("settings.gui.item.has-perm")));
+            Material hasNoPermItem = Material.valueOf(getConfig().getString("tags." + tag + ".item.no-perm.item", getConfig().getString("settings.gui.item.no-perm")));
+
+            tagManager.addTag(new Tag(tag).withPrefix(prefix).withDescription(desc).withPermission(perm).withSlot(slot).withItem(hasPermName, hasPermLore, hasPermItem, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, false));
             log("Tag '" + tag + "' added.");
         });
         log("A total of " + tagManager.getTags().size() + " tag(s) registered.");
@@ -86,20 +90,6 @@ public class PlayerTags extends JavaPlugin {
             getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());
         });
         saveConfig();
-    }
-
-    public void populateTags() {
-        for (int i = 0; i < 34; i++) {
-            tagManager.addTag(new Tag("tag" + i)
-                    .withPrefix("&7[Tag " + i + "]")
-                    .withDescription("Example tag (" + i + ")")
-                    .withPermission(false)
-                    .withSlot(-1)
-                    .withPersist(false)
-                    .withItem(Lang.GUI_TAG_HAS_PERM_NAME.asString(), Arrays.asList(Lang.GUI_TAG_HAS_PERM_LORE.asString().split("\n")), true)
-                    .withItem(Lang.GUI_TAG_HAS_NO_PERM_NAME.asString(), Arrays.asList(Lang.GUI_TAG_HAS_NO_PERM_LORE.asString().split("\n")), false));
-            log("Populating.. fake tag 'tag" + i + "' added.");
-        }
     }
 
     public void setupStorage() {

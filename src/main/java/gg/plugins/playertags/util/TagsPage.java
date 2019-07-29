@@ -30,9 +30,9 @@ public class TagsPage extends Base {
         int playerTagCount = 0;
         for (Tag tag : plugin.getTagManager().getTags().values()) {
             boolean hasPerm = tag.needPermission(player);
-            if (hasPerm) playerTagCount++;
 
-            if(plugin.getConfig().getBoolean("settings.gui.show-no-perm", false)) continue;
+            if (!hasPerm && !plugin.getConfig().getBoolean("settings.gui.show-no-perm", false)) continue;
+            playerTagCount++;
 
             ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();
             if (playerData.getTag() != null && playerData.getTag().equalsIgnoreCase(tag.getId())) {

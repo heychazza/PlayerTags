@@ -6,7 +6,7 @@
 
     <groupId>gg.plugins</groupId>
     <artifactId>playertags</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <plugin>PlayerTags</plugin>
@@ -76,6 +76,11 @@
                             <shadedPattern>${project.groupId}.${project.artifactId}.pear
                             </shadedPattern> <!-- Replace this -->
                         </relocation>
+                        <relocation>
+                            <pattern>com.hazebyte.base</pattern>
+                            <shadedPattern>${project.groupId}.${project.artifactId}.base
+                            </shadedPattern> <!-- Replace this -->
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -92,6 +97,7 @@
                                     <exclude>com.j256.ormlite:ormlite-core:jar</exclude>
                                     <exclude>com.github.Chazza.Item-NBT-API:item-nbt-api:jar</exclude>
                                     <exclude>com.github.Chazza.Item-NBT-API:item-nbt-api-plugin:jar</exclude>
+                                    <exclude>com.hazebyte.example</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>

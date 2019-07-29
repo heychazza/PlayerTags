@@ -3,6 +3,9 @@ settings:
   gui:
     size: 45
     show-no-perm: true
+      item:
+        has-perm: NAME_TAG
+        no-perm: BARRIER
 tags:
   meme:
     prefix: '&d[&lMeme&d]'
@@ -12,3 +15,15 @@ tags:
     prefix: '&b[&lOG&b]'
     description: "Much OG, Much Wow"
     permission: true
+    item:
+      has-perm:
+        item: DIAMOND
+        name: "&aOG Tag"
+        lore:
+          - '&7Customise in the config!'
+      no-perm:
+        item: REDSTONE
+          name: "&cOG Tag"
+          lore:
+            - '&7Customise in the config!'
+            - '&7&oNo perms :/'

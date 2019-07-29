@@ -76,7 +76,7 @@ public class Tag {
         return slot;
     }
 
-    public Tag withItem(String name, List<String> lore, boolean hasPerm) {
+    public Tag withItem(String name, List<String> lore, Material item, boolean hasPerm) {
         String translatedName = Lang.format(name, getId(), getPrefix(), getDescription()).replace("{id}", getId()).replace("{prefix}", getPrefix()).replace("{description}", getDescription());
         List<String> translatedLore = new ArrayList<>();
 
@@ -85,11 +85,11 @@ public class Tag {
         });
 
         if (hasPerm) {
-            itemHasPerm = new ItemBuilder(Material.NAME_TAG)
+            itemHasPerm = new ItemBuilder(item)
                     .displayName(translatedName)
                     .lore(translatedLore);
         } else {
-            itemNoPerm = new ItemBuilder(Material.NAME_TAG)
+            itemNoPerm = new ItemBuilder(item)
                     .displayName(translatedName)
                     .lore(translatedLore);
 
