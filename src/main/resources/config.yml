@@ -1,11 +1,14 @@
-## PlayerTags - v1.0 ##
-
 settings:
-    gui:
-      size: 45 # -1 = dynamic
-
+  debug: true
+  gui:
+    size: 45
+    show-no-perm: true
 tags:
-  example:
-      prefix: "&7[Example]"
-      description: "This is an example tag, r/woosh"
-      permission: false
+  meme:
+    prefix: '&d[&lMeme&d]'
+    description: "A true meme"
+    permission: false
+  og:
+    prefix: '&b[&lOG&b]'
+    description: "Much OG, Much Wow"
+    permission: true

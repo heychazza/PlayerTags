@@ -32,6 +32,8 @@ public class TagsPage extends Base {
             boolean hasPerm = tag.needPermission(player);
             if (hasPerm) playerTagCount++;
 
+            if(plugin.getConfig().getBoolean("settings.gui.show-no-perm", false)) continue;
+
             ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();
             if (playerData.getTag() != null && playerData.getTag().equalsIgnoreCase(tag.getId())) {
                 item.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);

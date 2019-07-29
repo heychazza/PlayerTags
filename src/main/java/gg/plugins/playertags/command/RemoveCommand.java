@@ -25,6 +25,7 @@ public class RemoveCommand {
 
         plugin.getTagManager().getTags().remove(tag.getId());
         plugin.getConfig().set("tags." + tag.getId(), null);
+        plugin.saveConfig();
         plugin.setupTags();
         Lang.REMOVE_COMMAND.send(sender, Lang.PREFIX.asString(), tagName);
     }

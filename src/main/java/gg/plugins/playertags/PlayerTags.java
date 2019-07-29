@@ -47,7 +47,7 @@ public class PlayerTags extends JavaPlugin {
     }
 
     public void log(String message) {
-        if (getConfig().getBoolean("debug", false)) getLogger().info("[DEBUG] " + message);
+        if (getConfig().getBoolean("settings.debug", false)) getLogger().info("[DEBUG] " + message);
     }
 
     public void handleReload() {
