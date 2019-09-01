@@ -2,7 +2,7 @@ name: ${plugin}
 version: ${project.version}
 main: ${package}
 author: Chazza
-website: https://plugins.gg/
+website: https://mcplugins.io/
 description: "Let players use custom tag prefixes beside their name."
 softdepend: ["PlaceholderAPI", "WorldGuard"]
 api-version: "1.13"
