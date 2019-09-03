@@ -8,7 +8,7 @@ import io.mcplugins.playertags.util.Common;
 import org.bukkit.command.CommandSender;
 
 public class SetPrefixCommand {
-    @Command(aliases = {"setprefix"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>")
+    @Command(aliases = {"set"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>")
     public static void execute(final CommandSender sender, final PlayerTags plugin, final String[] args) {
 
         if (args.length < 1) {
@@ -23,7 +23,13 @@ public class SetPrefixCommand {
             return;
         }
 
-        String prefix = Common.translate(args[1]);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i < args.length; i++) {
+            sb.append(args[i]);
+        }
+
+        String prefix = Common.translate(sb.toString());
         tag.setPrefix(prefix);
         plugin.getTagManager().getTags().put(tag.getId(), tag);
         plugin.saveTags();

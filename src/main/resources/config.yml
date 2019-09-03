@@ -1,5 +1,12 @@
 settings:
-  debug: true
+  debug: false
+  storage:
+      type: SQLITE
+      host: "localhost"
+      port: 3306
+      username: "root"
+      password: "password"
+      database: "playertags_data"
   gui:
     size: 45
     show-no-perm: true
@@ -8,10 +15,12 @@ settings:
       no-perm: BARRIER
 tags:
   meme:
+    type: 'PREFIX'
     prefix: '&d[&lMeme&d]'
     description: "A true meme"
     permission: false
   og:
+    type: 'SUFFIX'
     prefix: '&b[&lOG&b]'
     description: "Much OG, Much Wow"
     permission: true

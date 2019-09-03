@@ -10,7 +10,16 @@ trimExclude   *.* @*.EventHandler *(*);
 
 exclude       io.mcplugins.playertags. and
               io.mcplugins.playertags.PlayerTags and
-              io.mcplugins.playertags.api.;
+
+              io.mcplugins.playertags.api. and
+              io.mcplugins.playertags.api.* and
+              io.mcplugins.playertags.api.* * and
+              io.mcplugins.playertags.api.* * (*) and
+
+              io.mcplugins.playertags.storage.*.*PlayerData and
+              io.mcplugins.playertags.storage.*.*PlayerData * and
+              io.mcplugins.playertags.storage.*.*PlayerData * (*)
+              ;
 
 obfuscate   obfuscateFlow=extraAggressive
             encryptStringLiterals=enhanced

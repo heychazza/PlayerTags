@@ -12,3 +12,32 @@ commands:
     description: PlayerTags commands
     usage: ""
     aliases: ["tags"]
+
+permissions:
+  playertags.*:
+    description: Gives access to all Inferno commands
+    children:
+      playertags.create: true
+      playertags.remove: true
+      playertags.help: true
+      playertags.list: true
+      playertags.reload: true
+      playertags.setdesc: true
+      playertags.setprefix: true
+      playertags.version: true
+  playertags.create:
+    default: op
+  playertags.remove:
+    default: op
+  playertags.help:
+    default: op
+  playertags.list:
+    default: op
+  playertags.reload:
+    default: op
+  playertags.setdesc:
+    default: op
+  playertags.setprefix:
+    default: op
+  playertags.version:
+    default: op
