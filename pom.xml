@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.mcplugins</groupId>
+    <groupId>net.chazza</groupId>
     <artifactId>playertags</artifactId>
     <version>1.0.5</version>
 
@@ -88,31 +88,6 @@
                     <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml
                     </dependencyReducedPomLocation>
                     <relocations>
-                        <relocation>
-                            <pattern>dev.morphia</pattern>
-                            <shadedPattern>${project.groupId}.${project.artifactId}.morphia
-                            </shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>de.tr7zw.itemnbtapi</pattern>
-                            <shadedPattern>${project.groupId}.${project.artifactId}.apple
-                            </shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>com.mongodb</pattern>
-                            <shadedPattern>${project.groupId}.${project.artifactId}.banana
-                            </shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>com.j256.ormlite</pattern>
-                            <shadedPattern>${project.groupId}.${project.artifactId}.pear
-                            </shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>com.hazebyte.base</pattern>
-                            <shadedPattern>${project.groupId}.${project.artifactId}.base
-                            </shadedPattern> <!-- Replace this -->
-                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -168,21 +143,25 @@
             <groupId>dev.morphia.morphia</groupId>
             <artifactId>core</artifactId>
             <version>1.5.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.j256</groupId>
             <artifactId>ormlite-core</artifactId>
             <version>4.43</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.j256</groupId>
             <artifactId>ormlite-jdbc</artifactId>
             <version>4.43</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.7</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
@@ -191,19 +170,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Chazza</groupId>
-            <artifactId>Item-NBT-API</artifactId>
-            <version>3d06992b2a</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.Hazebyte</groupId>
             <artifactId>base</artifactId>
             <version>0.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.7.2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

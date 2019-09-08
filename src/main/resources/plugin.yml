@@ -2,9 +2,9 @@ name: ${plugin}
 version: ${project.version}
 main: ${package}
 author: Chazza
-website: https://mcplugins.io/
+website: https://chazza.net/
 description: "Let players use custom tag prefixes beside their name."
-softdepend: ["PlaceholderAPI", "WorldGuard"]
+softdepend: ["PlaceholderAPI"]
 api-version: "1.13"
 
 commands:
@@ -15,7 +15,7 @@ commands:
 
 permissions:
   playertags.*:
-    description: Gives access to all Inferno commands
+    description: Gives access to all PlayerTags commands
     children:
       playertags.create: true
       playertags.remove: true

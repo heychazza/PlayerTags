@@ -4,21 +4,21 @@ classpath     "%classpathLibs%"
 open          "%project.build.directory%%file.separator%%project.build.finalName%.%project.packaging%";
 
 stringEncryptionExclude
-              io.mcplugins.playertags.PlayerTags;
+              PlayerTags;
 
 trimExclude   *.* @*.EventHandler *(*);
 
-exclude       io.mcplugins.playertags. and
-              io.mcplugins.playertags.PlayerTags and
+exclude       net.chazza.playertags. and
+              net.chazza.playertags.PlayerTags and
 
-              io.mcplugins.playertags.api. and
-              io.mcplugins.playertags.api.* and
-              io.mcplugins.playertags.api.* * and
-              io.mcplugins.playertags.api.* * (*) and
+              net.chazza.playertags.api. and
+              net.chazza.playertags.api.* and
+              net.chazza.playertags.api.* * and
+              net.chazza.playertags.api.* * (*) and
 
-              io.mcplugins.playertags.storage.*.*PlayerData and
-              io.mcplugins.playertags.storage.*.*PlayerData * and
-              io.mcplugins.playertags.storage.*.*PlayerData * (*)
+              net.chazza.playertags.storage.*.*PlayerData and
+              net.chazza.playertags.storage.*.*PlayerData * and
+              net.chazza.playertags.storage.*.*PlayerData * (*)
               ;
 
 obfuscate   obfuscateFlow=extraAggressive
