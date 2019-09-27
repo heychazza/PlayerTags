@@ -4,21 +4,21 @@ classpath     "%classpathLibs%"
 open          "%project.build.directory%%file.separator%%project.build.finalName%.%project.packaging%";
 
 stringEncryptionExclude
-              PlayerTags;
+              io.felux.playertags.PlayerTags;
 
 trimExclude   *.* @*.EventHandler *(*);
 
-exclude       net.chazza.playertags. and
-              net.chazza.playertags.PlayerTags and
+exclude       io.felux.playertags. and
+              io.felux.playertags.PlayerTags and
 
-              net.chazza.playertags.api. and
-              net.chazza.playertags.api.* and
-              net.chazza.playertags.api.* * and
-              net.chazza.playertags.api.* * (*) and
+              io.felux.playertags.api. and
+              io.felux.playertags.api.* and
+              io.felux.playertags.api.* * and
+              io.felux.playertags.api.* * (*) and
 
-              net.chazza.playertags.storage.*.*PlayerData and
-              net.chazza.playertags.storage.*.*PlayerData * and
-              net.chazza.playertags.storage.*.*PlayerData * (*)
+              io.felux.playertags.storage.*.*PlayerData and
+              io.felux.playertags.storage.*.*PlayerData * and
+              io.felux.playertags.storage.*.*PlayerData * (*)
               ;
 
 obfuscate   obfuscateFlow=extraAggressive

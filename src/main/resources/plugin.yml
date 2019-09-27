@@ -1,8 +1,8 @@
 name: ${plugin}
 version: ${project.version}
 main: ${package}
-author: Chazza
-website: https://chazza.net/
+author: "Felux"
+website: https://felux.io/
 description: "Let players use custom tag prefixes beside their name."
 softdepend: ["PlaceholderAPI"]
 api-version: "1.13"
@@ -11,7 +11,7 @@ commands:
   playertags:
     description: PlayerTags commands
     usage: ""
-    aliases: ["tags"]
+    aliases: ["tags", "ptags"]
 
 permissions:
   playertags.*:
