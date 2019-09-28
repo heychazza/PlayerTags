@@ -29,7 +29,7 @@ public class JoinListener implements Listener {
             public void run() {
                 plugin.getStorageHandler().pushData(e.getPlayer().getUniqueId());
             }
-        }.runTaskLaterAsynchronously(plugin, 20);
+        }.runTaskLaterAsynchronously(plugin, 10);
     }
 
 }

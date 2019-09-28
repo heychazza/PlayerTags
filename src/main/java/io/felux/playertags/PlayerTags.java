@@ -20,7 +20,9 @@ import io.felux.playertags.util.ConsoleFilter;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -121,6 +123,18 @@ public class PlayerTags extends JavaPlugin {
                 );
                 break;
         }
+
+        if (getConfig().getBoolean("settings.autosave", true))
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    getLogger().info("Autosaving..");
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        getStorageHandler().pushData(player.getUniqueId());
+                    }
+                }
+            }.runTaskTimerAsynchronously(this, (20L * 60) * 10, (20L * 60) * 10);
+
     }
 
     public CommandManager getCommandManager() {
