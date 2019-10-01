@@ -55,9 +55,11 @@ public class TagsPage extends Base {
                 if (tag.getId().equalsIgnoreCase(playerData.getTag())) {
                     Lang.TAG_UNSELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
                     playerData.setTag(null);
+                    plugin.getStorageHandler().pushData(player.getUniqueId());
                 } else {
                     Lang.TAG_SELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
                     playerData.setTag(tag.getId());
+                    plugin.getStorageHandler().pushData(player.getUniqueId());
                 }
                 close(player);
             });

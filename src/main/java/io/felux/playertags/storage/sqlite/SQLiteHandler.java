@@ -5,8 +5,8 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import io.felux.playertags.storage.StorageHandler;
 import io.felux.playertags.storage.PlayerData;
+import io.felux.playertags.storage.StorageHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
@@ -50,7 +50,7 @@ public class SQLiteHandler implements StorageHandler {
 
     @Override
     public void pushData(UUID player) {
-        PlayerData playerData = PlayerData.get().get(player);
+        PlayerData playerData = PlayerData.get(player);
         try {
             accountDao.createOrUpdate((SQLitePlayerData) playerData);
         } catch (SQLException e) {

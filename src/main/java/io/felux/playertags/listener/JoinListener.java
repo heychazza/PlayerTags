@@ -1,6 +1,7 @@
 package io.felux.playertags.listener;
 
 import io.felux.playertags.PlayerTags;
+import io.felux.playertags.storage.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,8 +29,9 @@ public class JoinListener implements Listener {
             @Override
             public void run() {
                 plugin.getStorageHandler().pushData(e.getPlayer().getUniqueId());
+                PlayerData.get().remove(e.getPlayer().getUniqueId());
             }
-        }.runTaskLaterAsynchronously(plugin, 10);
+        }.runTaskLaterAsynchronously(plugin, 5);
     }
 
 }

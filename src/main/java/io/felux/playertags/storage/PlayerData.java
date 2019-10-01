@@ -12,6 +12,10 @@ public interface PlayerData {
         return users;
     }
 
+    static PlayerData get(UUID uuid) {
+        return users.get(uuid);
+    }
+
     String getUuid();
 
     String getUsername();
