@@ -36,7 +36,8 @@ public class CreateCommand {
         Material hasPermItem = Material.valueOf(plugin.getConfig().getString("tags." + tagName + ".item.has-perm.item", plugin.getConfig().getString("settings.gui.item.has-perm")));
         Material hasNoPermItem = Material.valueOf(plugin.getConfig().getString("tags." + tagName + ".item.no-perm.item", plugin.getConfig().getString("settings.gui.item.no-perm")));
 
-        Tag tag = new Tag(tagName).withPrefix("&7[" + tagName + "]").withDescription("Default description..").withPermission(true).withSlot(-1).withItem(hasPermName, hasPermLore, hasPermItem, 0, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, 0, false);
+        String tagPrefix = args.length > 1 ? args[1] : null;
+        Tag tag = new Tag(tagName).withPrefix(tagPrefix != null ? tagPrefix : "&7[" + tagName + "]").withDescription("Default description for " + tagName + " tag..").withPermission(true).withSlot(-1).withItem(hasPermName, hasPermLore, hasPermItem, 0, true).withPersist(true).withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, 0, false);
         plugin.getTagManager().addTag(tag);
         plugin.getConfig().set("tags." + tagName + ".prefix", tag.getPrefix());
         plugin.getConfig().set("tags." + tagName + ".description", tag.getDescription());
