@@ -22,7 +22,7 @@ public class RemoveCommand {
             return;
         }
 
-        plugin.getTagManager().getTags().remove(tag.getId());
+        plugin.getTagManager().removeTag(tag);
         plugin.getConfig().set("tags." + tag.getId(), null);
         plugin.saveConfig();
         plugin.setupTags();

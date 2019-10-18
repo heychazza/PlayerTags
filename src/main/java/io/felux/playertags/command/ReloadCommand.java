@@ -1,7 +1,7 @@
 package io.felux.playertags.command;
 
-import io.felux.playertags.command.util.Command;
 import io.felux.playertags.PlayerTags;
+import io.felux.playertags.command.util.Command;
 import io.felux.playertags.config.Lang;
 import org.bukkit.command.CommandSender;
 

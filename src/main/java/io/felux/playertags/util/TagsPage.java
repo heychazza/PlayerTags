@@ -6,9 +6,9 @@ import com.hazebyte.base.Size;
 import com.hazebyte.base.foundation.CloseButton;
 import com.hazebyte.base.foundation.NextButton;
 import com.hazebyte.base.foundation.PreviousButton;
-import io.felux.playertags.config.Lang;
 import io.felux.playertags.PlayerTags;
 import io.felux.playertags.api.Tag;
+import io.felux.playertags.config.Lang;
 import io.felux.playertags.storage.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,11 +56,21 @@ public class TagsPage extends Base {
                 if (tag.getId().equalsIgnoreCase(playerData.getTag())) {
                     Lang.TAG_UNSELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
                     playerData.setTag(null);
-                    plugin.getStorageHandler().pushData(player.getUniqueId());
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            plugin.getStorageHandler().pushData(player.getUniqueId());
+                        }
+                    }.runTaskAsynchronously(plugin);
                 } else {
                     Lang.TAG_SELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
                     playerData.setTag(tag.getId());
-                    plugin.getStorageHandler().pushData(player.getUniqueId());
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            plugin.getStorageHandler().pushData(player.getUniqueId());
+                        }
+                    }.runTaskAsynchronously(plugin);
                 }
                 close(player);
             });

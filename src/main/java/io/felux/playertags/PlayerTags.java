@@ -128,8 +128,13 @@ public class PlayerTags extends JavaPlugin {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    getLogger().info("Autosaving..");
                     for (Player player : Bukkit.getOnlinePlayers()) {
+                        PlayerData playerData = PlayerData.get(player.getUniqueId());
+
+                        if (playerData.getTag() != null && !getTagManager().getTag(playerData.getTag()).needPermission(player)) {
+                            playerData.setTag(null);
+                        }
+
                         getStorageHandler().pushData(player.getUniqueId());
                     }
                 }

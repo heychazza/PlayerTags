@@ -25,6 +25,9 @@ public class TagManager {
     public void addTag(Tag tag) {
         getTags().put(tag.getId(), tag);
     }
+    public void removeTag(Tag tag) {
+        getTags().remove(tag.getId());
+    }
 
     public List<Tag> getTags(Player player) {
         List<Tag> tags = new ArrayList<>();
