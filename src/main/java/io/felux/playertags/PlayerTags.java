@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -88,6 +89,9 @@ public class PlayerTags extends JavaPlugin {
         }));
 
         saveTags();
+
+        HandlerList.unregisterAll(this);
+        getServer().getScheduler().cancelTasks(this);
     }
 
     private void setupStorage() {
