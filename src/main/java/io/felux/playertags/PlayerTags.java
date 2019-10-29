@@ -211,6 +211,7 @@ public class PlayerTags extends JavaPlugin {
                             .withItem(hasPermName, hasPermLore, hasPermItem, hasPermData, true)
                             .withTagType(Tag.Type.valueOf(getConfig().getString("tags." + tag + ".type", "PREFIX")))
                             .withPersist(true)
+                            .setPlaceholder(getConfig().getBoolean("tags." + tag + ".placeholder", false))
                             .withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, hasNoPermData, false));
         });
     }
@@ -218,6 +219,7 @@ public class PlayerTags extends JavaPlugin {
     public void saveTags() {
         getTagManager().getTags().forEach((tagName, tagObj) -> {
             if (!tagObj.persist()) return;
+            if(tagObj.isPlaceholder()) return;
             getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
             getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
             getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());

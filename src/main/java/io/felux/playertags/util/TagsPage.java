@@ -24,15 +24,27 @@ import java.util.List;
 public class TagsPage extends Base {
 
     public TagsPage(PlayerTags plugin, Player player) {
-        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getTags().size(), plugin.getTagManager().getTags().size()), Size.from(plugin.getConfig().getInt("settings.gui.size", 27)));
+        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getTagAmount(player), (plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholderAmount())), Size.from(plugin.getConfig().getInt("settings.gui.size", 9)));
         PlayerData playerData = plugin.getStorageHandler().getPlayer(player.getUniqueId());
 
         int guiSlots = plugin.getConfig().getInt("settings.gui.size", 27);
         int playerTagCount = 0;
-        for (Tag tag : plugin.getTagManager().getTags().values()) {
+        for (Tag tag : plugin.getTagManager().getTags(player)) {
             boolean hasPerm = tag.needPermission(player);
 
-            if (!hasPerm && !plugin.getConfig().getBoolean("settings.gui.show-no-perm", false)) continue;
+            if(tag.isPlaceholder()) {
+                ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();
+                ItemMeta itemMeta = item.getItemMeta();
+                itemMeta.setDisplayName(Common.parse(player, itemMeta.getDisplayName()));
+                itemMeta.getLore().replaceAll(lore -> Common.parse(player, lore));
+                item.setItemMeta(itemMeta);
+                Button tagBtn = new Button(item);
+
+                if (tag.getSlot() == -1) this.addIcon(tagBtn);
+                else this.setIcon(tag.getSlot(), tagBtn);
+                continue;
+            }
+
             playerTagCount++;
 
             ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();

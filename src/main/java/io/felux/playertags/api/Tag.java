@@ -18,10 +18,11 @@ public class Tag {
     private ItemBuilder itemNoPerm;
     private boolean permission;
     private Type tagType;
+    private boolean placeholder;
     private boolean persist;
 
     public Tag(String id) {
-        this.id = id.toLowerCase();
+        this.id = id;
     }
 
     public String getId() {
@@ -66,7 +67,7 @@ public class Tag {
 
     public boolean needPermission(Player player) {
         if (!permission) return true;
-        return player.hasPermission("playertags.use." + getId());
+        return player.hasPermission("playertags.use." + getId().toLowerCase());
     }
 
     public boolean requirePermission() {
@@ -123,8 +124,17 @@ public class Tag {
         return this;
     }
 
+    public Tag setPlaceholder(boolean placeholder) {
+        this.placeholder = placeholder;
+        return this;
+    }
+
     public boolean persist() {
         return persist;
+    }
+
+    public boolean isPlaceholder() {
+        return placeholder;
     }
 
     public enum Type {

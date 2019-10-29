@@ -35,6 +35,17 @@ public class TagManager {
         return tags;
     }
 
+    public int getTagAmount(Player player) {
+        List<Tag> tags = new ArrayList<>();
+        getTags().entrySet().stream().filter((tag -> tag.getValue().needPermission(player) && !tag.getValue().isPlaceholder())).forEach(tag -> tags.add(tag.getValue()));
+        return tags.size();
+    }
+    public int getPlaceholderAmount() {
+        List<Tag> tags = new ArrayList<>();
+        getTags().entrySet().stream().filter((tag -> tag.getValue().isPlaceholder())).forEach(tag -> tags.add(tag.getValue()));
+        return tags.size();
+    }
+
     public Tag getTag(String id) {
         return getTags().values().stream().filter(tag -> tag.getId().equalsIgnoreCase(id)).findFirst().orElse(null);
     }
