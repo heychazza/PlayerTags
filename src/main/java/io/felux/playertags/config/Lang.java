@@ -45,8 +45,8 @@ public enum Lang {
     NO_TAG_PREFIX(""),
     NO_TAG_SUFFIX(""),
 
-    TAG_PREFIX("{0} "),
-    TAG_SUFFIX("{0} "),
+    TAG_PREFIX(" {0}"),
+    TAG_SUFFIX(" {0}"),
     ;
 
     private String message;

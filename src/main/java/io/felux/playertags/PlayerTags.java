@@ -6,6 +6,7 @@ import io.felux.playertags.command.util.CommandManager;
 import io.felux.playertags.config.Lang;
 import io.felux.playertags.config.TagManager;
 import io.felux.playertags.hook.PlaceholderAPIHook;
+import io.felux.playertags.listener.ChatListener;
 import io.felux.playertags.listener.JoinListener;
 import io.felux.playertags.maven.LibraryLoader;
 import io.felux.playertags.maven.MavenLibrary;
@@ -53,6 +54,10 @@ public class PlayerTags extends JavaPlugin {
 
         Common.loading("events");
         new JoinListener(this);
+
+        if(getConfig().getBoolean("settings.chat-format.enabled", false)) {
+            new ChatListener(this);
+        }
 
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);

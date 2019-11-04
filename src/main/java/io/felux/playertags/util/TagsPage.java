@@ -3,14 +3,12 @@ package io.felux.playertags.util;
 import com.hazebyte.base.Base;
 import com.hazebyte.base.Button;
 import com.hazebyte.base.Size;
-import com.hazebyte.base.foundation.CloseButton;
 import com.hazebyte.base.foundation.NextButton;
 import com.hazebyte.base.foundation.PreviousButton;
 import io.felux.playertags.PlayerTags;
 import io.felux.playertags.api.Tag;
 import io.felux.playertags.config.Lang;
 import io.felux.playertags.storage.PlayerData;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -32,7 +30,7 @@ public class TagsPage extends Base {
         for (Tag tag : plugin.getTagManager().getTags(player)) {
             boolean hasPerm = tag.needPermission(player);
 
-            if(tag.isPlaceholder()) {
+            if (tag.isPlaceholder()) {
                 ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();
                 ItemMeta itemMeta = item.getItemMeta();
                 itemMeta.setDisplayName(Common.parse(player, itemMeta.getDisplayName()));
@@ -100,7 +98,6 @@ public class TagsPage extends Base {
         }
 
         this.setIcon(navPages.stream().mapToInt(i -> i).toArray(), guiSlots - 6, new PreviousButton());
-        this.setIcon(guiSlots - 5, new CloseButton(new ItemStack(Material.IRON_DOOR)));
         this.setIcon(navPages.stream().mapToInt(i -> i).toArray(), guiSlots - 4, new NextButton());
     }
 }
