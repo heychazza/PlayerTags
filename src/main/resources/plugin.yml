@@ -1,7 +1,7 @@
-name: @plugin@
-version: @version@
-main: @package@.PlayerTags
-author: Felux
+name: ${plugin}
+version: ${project.version}
+main: ${package}
+author: "Felux"
 website: https://felux.io/
 prefix: "PT"
 description: "Let players use custom tag prefixes beside their name."
