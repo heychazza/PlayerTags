@@ -20,6 +20,7 @@ public class Tag {
     private Type tagType;
     private boolean placeholder;
     private boolean persist;
+    private List<String> actions;
 
     public Tag(String id) {
         this.id = id;
@@ -135,6 +136,15 @@ public class Tag {
 
     public boolean isPlaceholder() {
         return placeholder;
+    }
+
+    public Tag withActions(List<String> actions) {
+        this.actions = actions;
+        return this;
+    }
+
+    public List<String> getActions() {
+        return actions;
     }
 
     public enum Type {

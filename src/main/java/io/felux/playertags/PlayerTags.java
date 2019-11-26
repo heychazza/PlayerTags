@@ -27,6 +27,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -205,6 +206,10 @@ public class PlayerTags extends JavaPlugin {
             int hasPermData = getConfig().getInt("tags." + tag + ".item.has-perm.data", 0);
             int hasNoPermData = getConfig().getInt("tags." + tag + ".item.no-perm.data", 0);
 
+            boolean placeholder = getConfig().getBoolean("tags." + tag + ".placeholder", false);
+
+            List<String> actions = placeholder ? getConfig().getStringList("tags." + tag + ".actions") : Collections.emptyList();
+
             tagManager.addTag(
                     new Tag(tag)
                             .withPrefix(prefix)
@@ -214,7 +219,8 @@ public class PlayerTags extends JavaPlugin {
                             .withItem(hasPermName, hasPermLore, hasPermItem, hasPermData, true)
                             .withTagType(Tag.Type.valueOf(getConfig().getString("tags." + tag + ".type", "PREFIX")))
                             .withPersist(true)
-                            .setPlaceholder(getConfig().getBoolean("tags." + tag + ".placeholder", false))
+                            .setPlaceholder(placeholder)
+                            .withActions(actions)
                             .withItem(hasNoPermName, hasNoPermLore, hasNoPermItem, hasNoPermData, false));
         });
     }

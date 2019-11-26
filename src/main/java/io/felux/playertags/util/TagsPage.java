@@ -38,6 +38,10 @@ public class TagsPage extends Base {
                 item.setItemMeta(itemMeta);
                 Button tagBtn = new Button(item);
 
+                tagBtn.setAction(buttonClickEvent -> {
+                    ActionHandler.executeActions(player, tag.getActions());
+                });
+
                 if (tag.getSlot() == -1) this.addIcon(tagBtn);
                 else this.setIcon(tag.getSlot(), tagBtn);
                 continue;
