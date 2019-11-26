@@ -28,7 +28,7 @@ public class TagsPage extends Base {
         int guiSlots = plugin.getConfig().getInt("settings.gui.size", 27);
         int playerTagCount = 0;
         for (Tag tag : plugin.getTagManager().getTags(player)) {
-            boolean hasPerm = tag.needPermission(player);
+            boolean hasPerm = tag.hasPermission(player);
 
             if (tag.isPlaceholder()) {
                 ItemStack item = hasPerm ? tag.getItemHasPerm().asItemStack().clone() : tag.getItemNoPerm().asItemStack().clone();

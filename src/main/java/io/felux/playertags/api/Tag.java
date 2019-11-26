@@ -65,7 +65,7 @@ public class Tag {
         return this;
     }
 
-    public boolean needPermission(Player player) {
+    public boolean hasPermission(Player player) {
         if (!permission) return true;
         return player.hasPermission("playertags.use." + getId().toLowerCase());
     }

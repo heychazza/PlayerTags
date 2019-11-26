@@ -55,7 +55,7 @@ public class PlayerTags extends JavaPlugin {
         Common.loading("events");
         new JoinListener(this);
 
-        if(getConfig().getBoolean("settings.chat-format.enabled", false)) {
+        if (getConfig().getBoolean("settings.chat-format.enabled", false)) {
             new ChatListener(this);
         }
 
@@ -70,7 +70,7 @@ public class PlayerTags extends JavaPlugin {
         registerCommands();
 
         Common.loading("hooks");
-        hook("PlaceholderAPI");
+        hook();
 
         Common.sendConsoleMessage(" ");
         getLogger().info("Successfully enabled in " + (System.currentTimeMillis() - start) + "ms.");
@@ -140,7 +140,7 @@ public class PlayerTags extends JavaPlugin {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         PlayerData playerData = PlayerData.get(player.getUniqueId());
 
-                        if (playerData.getTag() != null && !getTagManager().getTag(playerData.getTag()).needPermission(player)) {
+                        if (playerData.getTag() != null && !getTagManager().getTag(playerData.getTag()).hasPermission(player)) {
                             playerData.setTag(null);
                         }
 
@@ -173,13 +173,11 @@ public class PlayerTags extends JavaPlugin {
         setupStorage();
     }
 
-    private void hook(final String plugin) {
-        final boolean enabled = Bukkit.getPluginManager().isPluginEnabled(plugin);
+    private void hook() {
+        final boolean enabled = Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI");
         if (enabled) {
-            if (plugin.equalsIgnoreCase("PlaceholderAPI")) {
-                new PlaceholderAPIHook(this).register();
-                Common.loading("PlaceholderAPI hook");
-            }
+            new PlaceholderAPIHook(this).register();
+            Common.loading("PlaceholderAPI hook");
         }
     }
 
@@ -224,7 +222,7 @@ public class PlayerTags extends JavaPlugin {
     public void saveTags() {
         getTagManager().getTags().forEach((tagName, tagObj) -> {
             if (!tagObj.persist()) return;
-            if(tagObj.isPlaceholder()) return;
+            if (tagObj.isPlaceholder()) return;
             getConfig().set("tags." + tagName + ".prefix", tagObj.getPrefix());
             getConfig().set("tags." + tagName + ".description", tagObj.getDescription());
             getConfig().set("tags." + tagName + ".permission", tagObj.requirePermission());

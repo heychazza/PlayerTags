@@ -1,5 +1,6 @@
 settings:
   debug: false
+  autosave: true
   chat-format:
     enabled: true
     format: "&7[%vault_prefix%] &f%player_name%&a%playertags_prefix%&7: %message%"

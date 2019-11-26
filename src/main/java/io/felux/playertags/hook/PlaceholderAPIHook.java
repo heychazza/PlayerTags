@@ -1,12 +1,13 @@
 package io.felux.playertags.hook;
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import io.felux.playertags.PlayerTags;
 import io.felux.playertags.api.Tag;
 import io.felux.playertags.config.Lang;
 import io.felux.playertags.storage.PlayerData;
 import io.felux.playertags.util.Common;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
     private PlayerTags plugin;
@@ -93,6 +94,15 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
             Tag tag = plugin.getTagManager().getTag(playerEntity.getTag());
             return tag != null && tag.getTagType() == Tag.Type.SUFFIX ? Common.parse(player, Lang.TAG_SUFFIX.asString(tag.getPrefix())) : Lang.NO_TAG_SUFFIX.asString();
         }
+
+        if (identifier.equalsIgnoreCase("unlocked")) {
+            return String.valueOf(plugin.getTagManager().getUnlockedTags((Player) player).size());
+        }
+
+        if (identifier.equalsIgnoreCase("total")) {
+            return String.valueOf(plugin.getTagManager().getTags().size());
+        }
+
         return null;
     }
 }

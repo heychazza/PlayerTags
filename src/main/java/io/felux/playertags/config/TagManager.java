@@ -13,6 +13,7 @@ public class TagManager {
 
     private PlayerTags plugin;
     private Map<String, Tag> tags;
+
     public TagManager(PlayerTags plugin) {
         this.plugin = plugin;
         this.tags = new HashMap<>();
@@ -25,21 +26,40 @@ public class TagManager {
     public void addTag(Tag tag) {
         getTags().put(tag.getId(), tag);
     }
+
     public void removeTag(Tag tag) {
         getTags().remove(tag.getId());
     }
 
     public List<Tag> getTags(Player player) {
         List<Tag> tags = new ArrayList<>();
-        getTags().entrySet().stream().filter((tag -> tag.getValue().needPermission(player))).forEach(tag -> tags.add(tag.getValue()));
+
+        for (Map.Entry<String, Tag> tagEntry : getTags().entrySet()) {
+            Tag tag = tagEntry.getValue();
+
+            if (tag.hasPermission(player) || plugin.getConfig().getBoolean("settings.gui.show-no-perm")) {
+                tags.add(tag);
+            }
+        }
+        return tags;
+    }
+
+    public List<Tag> getUnlockedTags(Player player) {
+        List<Tag> tags = new ArrayList<>();
+
+        for (Map.Entry<String, Tag> tagEntry : getTags().entrySet()) {
+            Tag tag = tagEntry.getValue();
+            if (tag.hasPermission(player)) tags.add(tag);
+        }
         return tags;
     }
 
     public int getTagAmount(Player player) {
         List<Tag> tags = new ArrayList<>();
-        getTags().entrySet().stream().filter((tag -> tag.getValue().needPermission(player) && !tag.getValue().isPlaceholder())).forEach(tag -> tags.add(tag.getValue()));
+        getTags().entrySet().stream().filter((tag -> tag.getValue().hasPermission(player) && !tag.getValue().isPlaceholder())).forEach(tag -> tags.add(tag.getValue()));
         return tags.size();
     }
+
     public int getPlaceholderAmount() {
         List<Tag> tags = new ArrayList<>();
         getTags().entrySet().stream().filter((tag -> tag.getValue().isPlaceholder())).forEach(tag -> tags.add(tag.getValue()));
