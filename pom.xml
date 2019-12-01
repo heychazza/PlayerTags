@@ -6,7 +6,7 @@
 
     <groupId>io.felux</groupId>
     <artifactId>playertags</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
 
     <properties>
         <plugin>PlayerTags</plugin>

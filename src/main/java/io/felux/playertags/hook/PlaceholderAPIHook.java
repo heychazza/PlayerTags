@@ -96,11 +96,11 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         }
 
         if (identifier.equalsIgnoreCase("unlocked")) {
-            return String.valueOf(plugin.getTagManager().getUnlockedTags((Player) player).size());
+            return String.valueOf(plugin.getTagManager().getUnlockedTags((Player) player).size() - plugin.getTagManager().getPlaceholderAmount());
         }
 
         if (identifier.equalsIgnoreCase("total")) {
-            return String.valueOf(plugin.getTagManager().getTags().size());
+            return String.valueOf(plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholderAmount());
         }
 
         return null;

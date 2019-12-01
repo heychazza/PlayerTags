@@ -44,12 +44,22 @@ public class TagManager {
         return tags;
     }
 
+    public List<Tag> getPlaceholders() {
+        List<Tag> tags = new ArrayList<>();
+
+        for (Map.Entry<String, Tag> tagEntry : getTags().entrySet()) {
+            Tag tag = tagEntry.getValue();
+            if (tag.isPlaceholder()) tags.add(tag);
+        }
+        return tags;
+    }
+
     public List<Tag> getUnlockedTags(Player player) {
         List<Tag> tags = new ArrayList<>();
 
         for (Map.Entry<String, Tag> tagEntry : getTags().entrySet()) {
             Tag tag = tagEntry.getValue();
-            if (tag.hasPermission(player)) tags.add(tag);
+            if (tag.hasPermission(player) && !tag.isPlaceholder()) tags.add(tag);
         }
         return tags;
     }
