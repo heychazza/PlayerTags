@@ -18,6 +18,7 @@ import io.felux.playertags.storage.mysql.MySQLHandler;
 import io.felux.playertags.storage.sqlite.SQLiteHandler;
 import io.felux.playertags.util.Common;
 import io.felux.playertags.util.ConsoleFilter;
+import io.felux.playertags.util.Metrics;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -72,6 +73,9 @@ public class PlayerTags extends JavaPlugin {
 
         Common.loading("hooks");
         hook();
+
+        Common.loading("metrics");
+        new Metrics(this);
 
         Common.sendConsoleMessage(" ");
         getLogger().info("Successfully enabled in " + (System.currentTimeMillis() - start) + "ms.");
