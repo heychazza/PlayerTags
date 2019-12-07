@@ -6,7 +6,7 @@
 
     <groupId>io.felux</groupId>
     <artifactId>playertags</artifactId>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
 
     <properties>
         <plugin>PlayerTags</plugin>
@@ -17,9 +17,10 @@
         <finalName>${plugin}-v${project.version}</finalName>
         <resources>
             <resource>
-                <directory>src/main/resources</directory> <!-- (your resources folder location) -->
-                <filtering>true
-                </filtering> <!-- this is the important part, it's what replaces, filters, all placeholders in the resources folder (such as ${project.version} in plugin.yml) -->
+                <!-- (your resources folder location) -->
+                <directory>src/main/resources</directory>
+                <!-- this is the important part, it's what replaces, filters, all placeholders in the resources folder (such as ${project.version} in plugin.yml) -->
+                <filtering>true</filtering>
                 <includes>
                     <include>*.yml</include>
                 </includes>
@@ -32,11 +33,13 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
+                    <outputDirectory>server/plugins</outputDirectory>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                     </archive>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

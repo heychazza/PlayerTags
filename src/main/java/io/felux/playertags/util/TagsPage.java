@@ -22,7 +22,7 @@ import java.util.List;
 public class TagsPage extends Base {
 
     public TagsPage(PlayerTags plugin, Player player) {
-        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getTagAmount(player), (plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholderAmount())), Size.from(plugin.getConfig().getInt("settings.gui.size", 9)));
+        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getTags(player).size(), (plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholders().size())), Size.from(plugin.getConfig().getInt("settings.gui.size", 9)));
         PlayerData playerData = plugin.getStorageHandler().getPlayer(player.getUniqueId());
 
         int guiSlots = plugin.getConfig().getInt("settings.gui.size", 27);
