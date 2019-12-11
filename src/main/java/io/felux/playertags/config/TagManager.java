@@ -31,11 +31,13 @@ public class TagManager {
         getTags().remove(tag.getId());
     }
 
-    public List<Tag> getTags(Player player) {
+    public List<Tag> getTags(Player player, boolean includePlaceholders) {
         List<Tag> tags = new ArrayList<>();
 
         for (Map.Entry<String, Tag> tagEntry : getTags().entrySet()) {
             Tag tag = tagEntry.getValue();
+
+            if (!includePlaceholders && tag.isPlaceholder()) continue;
 
             if (tag.hasPermission(player) || plugin.getConfig().getBoolean("settings.gui.show-no-perm")) {
                 tags.add(tag);

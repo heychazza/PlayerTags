@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class ListCommand {
                 return;
             }
 
-            List<Tag> tagList = plugin.getTagManager().getTags(target).stream().filter(tag -> !tag.isPlaceholder()).collect(Collectors.toList());
+            List<Tag> tagList = new ArrayList<>(plugin.getTagManager().getTags(target, false));
             String tagStr = tagList.stream().map(Tag::getId).collect(Collectors.joining(Lang.LIST_SEPARATOR.asString()));
 
             if (sender instanceof Player) {
