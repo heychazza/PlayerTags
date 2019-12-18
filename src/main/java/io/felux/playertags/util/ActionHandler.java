@@ -1,6 +1,7 @@
 package io.felux.playertags.util;
 
 import io.felux.playertags.PlayerTags;
+import io.felux.playertags.storage.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,6 +27,9 @@ public class ActionHandler {
     }
 
     private static void handle(Player p, List<String> list) {
+        final PlayerData playerData = PlayerData.get(p.getUniqueId());
+        if (playerData == null) return;
+
         for (String msg : list) {
             boolean singleAction = !msg.contains(" ");
             String actionPrefix = singleAction ? msg : msg.split(" ", 2)[0].toUpperCase();
@@ -50,6 +54,9 @@ public class ActionHandler {
                     break;
                 case "[CLOSE]":
                     p.closeInventory();
+                    break;
+                case "[RESET]":
+                    playerData.setTag(null);
                     break;
                 default:
                     PLUGIN.getLogger().warning("No action exists for '" + actionPrefix + "'.");

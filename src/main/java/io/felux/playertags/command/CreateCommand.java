@@ -11,15 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CreateCommand {
-    @Command(aliases = {"create"}, about = "Create a tag.", permission = "playertags.create", usage = "create <id>")
+    @Command(aliases = {"create"}, about = "Create a tag.", permission = "playertags.create", usage = "create <id>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final PlayerTags plugin, final String[] args) {
-
-        if (args.length == 0) {
-            // no id specified
-            Lang.COMMAND_INVALID_SYNTAX.send(sender, Lang.PREFIX.asString());
-            return;
-        }
-
         String tagName = args[0];
 
         if (plugin.getTagManager().getTag(tagName) != null) {

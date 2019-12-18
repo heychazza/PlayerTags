@@ -8,14 +8,8 @@ import io.felux.playertags.util.Common;
 import org.bukkit.command.CommandSender;
 
 public class SetPrefixCommand {
-    @Command(aliases = {"set"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>")
+    @Command(aliases = {"set"}, about = "Set a tags prefix.", permission = "playertags.setprefix", usage = "setprefix <id> <prefix>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final PlayerTags plugin, final String[] args) {
-
-        if (args.length < 1) {
-            Lang.COMMAND_INVALID_SYNTAX.send(sender, Lang.PREFIX.asString());
-            return;
-        }
-
         String tagName = args[0];
         Tag tag = plugin.getTagManager().getTag(tagName);
         if (tag == null) {

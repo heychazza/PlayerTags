@@ -56,10 +56,14 @@ public class TagsPage extends Base {
             item.setItemMeta(itemMeta);
 
             if (playerData.getTag() != null && playerData.getTag().equalsIgnoreCase(tag.getId())) {
-                item.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
-                ItemMeta localItemMeta = item.getItemMeta();
-                localItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                item.setItemMeta(localItemMeta);
+                if (plugin.getConfig().getBoolean("settings.legacy", false)) {
+                    item = LegacyGlow.addGlow(item);
+                } else {
+                    item.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
+                    ItemMeta localItemMeta = item.getItemMeta();
+                    localItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    item.setItemMeta(localItemMeta);
+                }
             }
             Button tagBtn = new Button(item);
             if (hasPerm) tagBtn.setProperty("id", tag.getId());

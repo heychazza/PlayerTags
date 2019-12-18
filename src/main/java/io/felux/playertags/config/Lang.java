@@ -17,7 +17,7 @@ public enum Lang {
     COMMAND_TAG_EXISTS("{0} &7A tag by that id already exists."),
     COMMAND_TAG_UNKNOWN("{0} &7A tag by that id doesn't exist."),
     COMMAND_UNKNOWN("{0} &7That player couldn't be found."),
-    COMMAND_INVALID_SYNTAX("{0} &7Invalid syntax, please use &f/tags help&7."),
+    COMMAND_USAGE("{0} &7Usage: &b/tags {1}&7."),
 
     LIST_COMMAND_SELF("{0} &7Tags ({1}): {2}"),
     LIST_COMMAND_OTHER("{0} &7{1}'s Tags ({2}): {3}"),
@@ -28,6 +28,10 @@ public enum Lang {
     CREATE_COMMAND("{0} &7Created tag &b'{1}'&7."),
     REMOVE_COMMAND("{0} &7Removed tag &b'{1}'&7."),
     SET_PREFIX_COMMAND("{0} &7The prefix to &b'{1}' &7has been set to {2}&7."),
+
+    SELECTED_TAG("{0} &7You've selected the &b{2} &7tag."),
+    SELECTED_TAG_OTHER("{0} &f{1} &7now has the &b{3} &7tag."),
+    TAG_CHANGED_TO("{0} &7Your tag has been changed to &b{2}&7."),
 
     HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),
     HELP_COMMAND_FORMAT(" &b/tags {1} &8- &7{2}"),
@@ -112,6 +116,6 @@ public enum Lang {
                 opt = Optional.ofNullable(Lang.c.getString(this.getPath()));
             }
         }
-        return this.format(opt.orElse(this.message), objects);
+        return format(opt.orElse(this.message), objects);
     }
 }
