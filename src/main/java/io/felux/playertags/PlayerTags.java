@@ -143,7 +143,9 @@ public class PlayerTags extends JavaPlugin {
                 @Override
                 public void run() {
                     for (Player player : Bukkit.getOnlinePlayers()) {
-                        PlayerData playerData = PlayerData.get(player.getUniqueId());
+                        final PlayerData playerData = PlayerData.get(player.getUniqueId());
+
+                        if (playerData == null) continue;
 
                         if (playerData.getTag() != null && !getTagManager().getTag(playerData.getTag()).hasPermission(player)) {
                             playerData.setTag(null);

@@ -72,7 +72,7 @@ public class TagsPage extends Base {
                 if (!hasPerm) return;
 
                 if (tag.getId().equalsIgnoreCase(playerData.getTag())) {
-                    Lang.TAG_UNSELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
+                    Lang.TAG_UNSELECTED.send(player, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
                     playerData.setTag(null);
                     new BukkitRunnable() {
                         @Override
@@ -81,7 +81,7 @@ public class TagsPage extends Base {
                         }
                     }.runTaskAsynchronously(plugin);
                 } else {
-                    Lang.TAG_SELECTED.send(player, Lang.PREFIX.asString(), tag.getId());
+                    Lang.TAG_SELECTED.send(player, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
                     playerData.setTag(tag.getId());
                     new BukkitRunnable() {
                         @Override

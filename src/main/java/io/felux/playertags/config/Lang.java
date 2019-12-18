@@ -29,8 +29,6 @@ public enum Lang {
     REMOVE_COMMAND("{0} &7Removed tag &b'{1}'&7."),
     SET_PREFIX_COMMAND("{0} &7The prefix to &b'{1}' &7has been set to {2}&7."),
 
-    SELECTED_TAG("{0} &7You've selected the &b{2} &7tag."),
-    SELECTED_TAG_OTHER("{0} &f{1} &7now has the &b{3} &7tag."),
     TAG_CHANGED_TO("{0} &7Your tag has been changed to &b{2}&7."),
 
     HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),
@@ -42,8 +40,10 @@ public enum Lang {
     GUI_TAG_HAS_PERM_LORE("&7", "&7Description:", "{description}", "&7", "&7ID: &b{id}", "&7"),
     GUI_TAG_HAS_NO_PERM_NAME("{prefix}"),
     GUI_TAG_HAS_NO_PERM_LORE("&7", "&7Description:", "{description}", "&7", "&7ID: &b{id}", "&7", "&cYou cannot use this."),
-    TAG_SELECTED("{0} &7Selected the '{1}' tag."),
-    TAG_UNSELECTED("{0} &7Unselected the '{1}' tag."),
+
+    TAG_SELECTED("{0} &7Selected the &b{2}&7 tag."),
+    TAG_UNSELECTED("{0} &7Unselected the &b{2}&7 tag."),
+    TAG_SELECTED_OTHER("{0} &f{1} &7now has the &b{3}&7 tag."),
 
     NO_TAG_ID("None"),
     NO_TAG_PREFIX(""),

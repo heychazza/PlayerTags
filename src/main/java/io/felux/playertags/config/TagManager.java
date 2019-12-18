@@ -67,6 +67,7 @@ public class TagManager {
     }
 
     public Tag getTag(String id) {
+        if (id == null) return null;
         return getTags().values().stream().filter(tag -> tag.getId().equalsIgnoreCase(id)).findFirst().orElse(null);
     }
 }

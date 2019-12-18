@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 public class SelectCommand {
     @Command(aliases = {"select"}, about = "Select a tag.", permission = "playertags.select", usage = "select <id> [player]", requiredArgs = 1)
     public static void execute(final Player sender, final PlayerTags plugin, final String[] args) {
-
         final Tag tag = plugin.getTagManager().getTag(args[0]);
 
         if (tag == null) {
@@ -23,7 +22,7 @@ public class SelectCommand {
             // No target player.
             final PlayerData playerData = PlayerData.get(sender.getUniqueId());
             playerData.setTag(tag.getId());
-            Lang.SELECTED_TAG.send(sender, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
+            Lang.TAG_SELECTED.send(sender, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
             return;
         }
 
@@ -44,11 +43,11 @@ public class SelectCommand {
         playerData.setTag(tag.getId());
 
         if (sender.getUniqueId() == target.getUniqueId()) {
-            Lang.SELECTED_TAG.send(sender, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
+            Lang.TAG_SELECTED.send(sender, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
             return;
         }
 
-        Lang.SELECTED_TAG_OTHER.send(sender, Lang.PREFIX.asString(), target.getName(), tag.getId(), tag.getPrefix());
+        Lang.TAG_SELECTED_OTHER.send(sender, Lang.PREFIX.asString(), target.getName(), tag.getId(), tag.getPrefix());
         Lang.TAG_CHANGED_TO.send(target, Lang.PREFIX.asString(), tag.getId(), tag.getPrefix());
     }
 }
