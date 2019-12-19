@@ -44,6 +44,10 @@ public enum Lang {
     TAG_SELECTED("{0} &7Selected the &b{2}&7 tag."),
     TAG_UNSELECTED("{0} &7Unselected the &b{2}&7 tag."),
     TAG_SELECTED_OTHER("{0} &f{1} &7now has the &b{3}&7 tag."),
+    TAG_UNSELECTED_OTHER("{0} &f{1} &7no longer has the &b{3}&7 tag."),
+
+    NO_TAG_SELECTED("{0} &7You don't currently have a tag selected."),
+    NO_TAG_SELECTED_OTHER("{0} &f{1} &7don't currently have a tag selected."),
 
     NO_TAG_ID("None"),
     NO_TAG_PREFIX(""),

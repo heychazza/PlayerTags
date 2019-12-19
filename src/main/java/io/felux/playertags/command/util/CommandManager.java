@@ -36,7 +36,8 @@ public class CommandManager {
                 RemoveCommand.class,
                 SetPrefixCommand.class,
                 SetDescCommand.class,
-                SelectCommand.class
+                SelectCommand.class,
+                ResetCommand.class
         );
 
         for (Class cmdClass : commandClasses) {

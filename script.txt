@@ -21,7 +21,7 @@ exclude       io.felux.playertags. and
               io.felux.playertags.storage.*.*PlayerData * (*)
               ;
 
-obfuscate   obfuscateFlow=extraAggressive
+obfuscate   obfuscateFlow=aggressive
             encryptStringLiterals=enhanced
             mixedCaseClassNames=true
             aggressiveMethodRenaming=true
