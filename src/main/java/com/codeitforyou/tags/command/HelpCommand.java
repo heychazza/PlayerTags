@@ -24,7 +24,7 @@ public class HelpCommand {
             if (!sender.hasPermission(commandAnnotation.permission())) {
                 continue;
             }
-            Lang.HELP_COMMAND_FORMAT.send(sender, String.join(",", commandAnnotation.aliases()), commandAnnotation.usage(), commandAnnotation.about());
+            Lang.HELP_COMMAND_FORMAT.send(sender, commandAnnotation.aliases()[0], !commandAnnotation.usage().isEmpty() ? " " + commandAnnotation.usage() : "", commandAnnotation.about());
         }
         Lang.HELP_COMMAND_FOOTER.send(sender, Lang.PREFIX.asString(), commandMethods.size());
     }

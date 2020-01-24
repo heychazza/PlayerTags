@@ -32,7 +32,7 @@ public enum Lang {
     TAG_CHANGED_TO("{0} &7Your tag has been changed to &b{2}&7."),
 
     HELP_COMMAND_HEADER("", "{0} &7Listing Commands:", "&7"),
-    HELP_COMMAND_FORMAT(" &b/tags {1} &8- &7{2}"),
+    HELP_COMMAND_FORMAT(" &b/tags {0}{1} &8- &7{2}"),
     HELP_COMMAND_FOOTER("", "{0} &7Total of &f{1} &7commands."),
 
     GUI_TITLE("Player Tags ({1}/{2} Unlocked)"),

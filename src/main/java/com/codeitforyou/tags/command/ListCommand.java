@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListCommand {
-    @Command(aliases = {"list"}, about = "List available tags.", permission = "cifytags.list", usage = "list [player]")
+    @Command(aliases = {"list"}, about = "List available tags.", permission = "cifytags.list", usage = "[player]")
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         if (args.length > 0) {
             final Player target = Bukkit.getPlayer(args[0]);

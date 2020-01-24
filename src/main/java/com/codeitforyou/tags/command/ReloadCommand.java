@@ -7,7 +7,7 @@ import com.codeitforyou.tags.util.Common;
 import org.bukkit.command.CommandSender;
 
 public class ReloadCommand {
-    @Command(aliases = {"reload"}, about = "Reload the plugin.", permission = "cifytags.reload", usage = "reload")
+    @Command(aliases = {"reload"}, about = "Reload the plugin.", permission = "cifytags.reload")
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         plugin.handleReload();
         Lang.RELOAD_COMMAND.send(sender, Lang.PREFIX.asString(), Common.getTotalTags());

@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ResetCommand {
-    @Command(aliases = {"reset"}, about = "Reset a players tag.", permission = "cifytags.reset", usage = "reset [player] [silent]")
+    @Command(aliases = {"reset"}, about = "Reset a players tag.", permission = "cifytags.reset", usage = "[player] [silent]")
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         if (args.length == 0) {
             // No target player.

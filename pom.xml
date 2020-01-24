@@ -122,6 +122,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.codeitforyou.lib</pattern>
+                                    <shadedPattern>${project.groupId}.${project.artifactId}.lib</shadedPattern>
+                                </relocation>
+                            </relocations>
                             <artifactSet>
                                 <excludes>
                                     <exclude>org.jetbrains:annotations</exclude>
@@ -143,7 +149,7 @@
         <dependency>
             <groupId>com.codeitforyou</groupId>
             <artifactId>lib</artifactId>
-            <version>1.1.5-SNAPSHOT</version>
+            <version>1.1.7-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>

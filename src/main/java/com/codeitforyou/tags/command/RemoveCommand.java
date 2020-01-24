@@ -7,7 +7,7 @@ import com.codeitforyou.tags.config.Lang;
 import org.bukkit.command.CommandSender;
 
 public class RemoveCommand {
-    @Command(aliases = {"remove"}, about = "Remove a tag.", permission = "cifytags.remove", usage = "remove <id>", requiredArgs = 1)
+    @Command(aliases = {"remove"}, about = "Remove a tag.", permission = "cifytags.remove", usage = "<id>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         String tagName = args[0];
         Tag tag = plugin.getTagManager().getTag(tagName);

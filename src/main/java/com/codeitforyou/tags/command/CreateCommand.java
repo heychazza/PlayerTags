@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CreateCommand {
-    @Command(aliases = {"create"}, about = "Create a tag.", permission = "cifytags.create", usage = "create <id>", requiredArgs = 1)
+    @Command(aliases = {"create"}, about = "Create a tag.", permission = "cifytags.create", usage = "<id>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         String tagName = args[0];
 

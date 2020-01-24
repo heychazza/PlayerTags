@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SelectCommand {
-    @Command(aliases = {"select"}, about = "Select a players tag.", permission = "cifytags.select", usage = "select <id> [player] [silent]", requiredArgs = 1)
+    @Command(aliases = {"select"}, about = "Select a players tag.", permission = "cifytags.select", usage = "<id> [player] [silent]", requiredArgs = 1)
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         final Tag tag = plugin.getTagManager().getTag(args[0]);
 

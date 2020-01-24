@@ -8,7 +8,7 @@ import com.codeitforyou.tags.config.Lang;
 import org.bukkit.command.CommandSender;
 
 public class SetDescCommand {
-    @Command(aliases = {"setdesc"}, about = "Set a tags description.", permission = "cifytags.setdesc", usage = "setdesc <id> <prefix>", requiredArgs = 1)
+    @Command(aliases = {"setdesc"}, about = "Set a tags description.", permission = "cifytags.setdesc", usage = "<id> <prefix>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         String tagName = args[0];
         Tag tag = plugin.getTagManager().getTag(tagName);

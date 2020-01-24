@@ -9,7 +9,7 @@ import com.codeitforyou.tags.util.Common;
 import org.bukkit.command.CommandSender;
 
 public class SetPrefixCommand {
-    @Command(aliases = {"set"}, about = "Set a tags prefix.", permission = "cifytags.setprefix", usage = "setprefix <id> <prefix>", requiredArgs = 1)
+    @Command(aliases = {"setprefix"}, about = "Set a tags prefix.", permission = "cifytags.setprefix", usage = "<id> <prefix>", requiredArgs = 1)
     public static void execute(final CommandSender sender, final CIFYTags plugin, final String[] args) {
         String tagName = args[0];
         Tag tag = plugin.getTagManager().getTag(tagName);
