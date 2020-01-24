@@ -15,23 +15,35 @@ exclude       com.codeitforyou.tags. and
               com.codeitforyou.tags.api.* * and
               com.codeitforyou.tags.api.* * (*) and
 
+              com.codeitforyou.tags.command.* * and
+              com.codeitforyou.tags.command.* * (*) and
+
+              com.codeitforyou.tags.listener.* * and
+              com.codeitforyou.tags.listener.* * (*) and
+
               com.codeitforyou.tags.storage.*.*PlayerData and
               com.codeitforyou.tags.storage.*.*PlayerData * and
               com.codeitforyou.tags.storage.*.*PlayerData * (*)
               ;
 
-obfuscate   obfuscateFlow=aggressive
-            encryptStringLiterals=enhanced
-            mixedCaseClassNames=true
+obfuscate
+            changeLogFileOut="ChangeLog.txt"
+            keepInnerClassInfo=ifNameNotObfuscated // should be true to allow use of OpenAPI inner classes
+            keepGenericsInfo=true
             aggressiveMethodRenaming=true
-            hideFieldNames=true
-            uniqueClassNames=true
+            obfuscateFlow=aggressive
+            exceptionObfuscation=heavy
+            encryptStringLiterals=enhanced
+            legalIdentifiers=true
+            lineNumbers=keep
+            hideFieldNames=false
+            hideStaticMethodNames=false
             randomize=true
-            localVariables=delete
-            lineNumbers=scramble
-            autoReflectionHandling=normal
-            obfuscateReferences=none
-            obfuscateReferenceStructures=inSpecialClass
-            lineNumbers=scramble;
+            methodParameters=keepVisibleIfNotObfuscated
+            localVariables=keepMethodParametersIfNotObfuscated
+            methodParameterChanges=flowObfuscate
+            obfuscateReferences=normal
+            ;
+
 
 saveAll     "D:/Documents/Minecraft/TestServer/plugins/%project.build.finalName%.%project.packaging%";
