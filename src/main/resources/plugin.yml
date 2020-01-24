@@ -1,44 +1,42 @@
 name: ${plugin}
 version: ${project.version}
 main: ${package}
-author: "Felux"
-website: https://felux.io/
-prefix: "PT"
+author: "CodeItForYou"
+website: https://codeitforyou.com/
 description: "Let players use custom tag prefixes beside their name."
 softdepend: ["PlaceholderAPI"]
-api-version: "1.13"
 
 commands:
-  playertags:
-    description: PlayerTags commands
+  cifytags:
+    description: ${plugin} commands
     usage: ""
     aliases: ["tags", "tag", "ptags"]
 
 permissions:
-  playertags.*:
+  cifytags.*:
     description: Gives access to all PlayerTags commands
     children:
-      playertags.create: true
-      playertags.remove: true
-      playertags.help: true
-      playertags.list: true
-      playertags.reload: true
-      playertags.setdesc: true
-      playertags.setprefix: true
-      playertags.version: true
-  playertags.create:
+      cifytags.create: true
+      cifytags.remove: true
+      cifytags.help: true
+      cifytags.list: true
+      cifytags.reload: true
+      cifytags.setdesc: true
+      cifytags.setprefix: true
+      cifytags.version: true
+  cifytags.create:
     default: op
-  playertags.remove:
+  cifytags.remove:
     default: op
-  playertags.help:
+  cifytags.help:
     default: op
-  playertags.list:
+  cifytags.list:
     default: op
-  playertags.reload:
+  cifytags.reload:
     default: op
-  playertags.setdesc:
+  cifytags.setdesc:
     default: op
-  playertags.setprefix:
+  cifytags.setprefix:
     default: op
-  playertags.version:
+  cifytags.version:
     default: op

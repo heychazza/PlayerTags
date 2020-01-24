@@ -1,24 +1,23 @@
 classpath     "%classpathLibs%"
               "%compileArtifactPath%"
               "%pluginArtifactPath%";
-open          "server/plugins/%project.build.finalName%.%project.packaging%";
+open          "D:/Documents/Minecraft/TestServer/plugins/%project.build.finalName%.%project.packaging%";
 
-stringEncryptionExclude
-              io.felux.playertags.PlayerTags;
+stringEncryptionExclude com.codeitforyou.tags.CIFYTags;
 
 trimExclude   *.* @*.EventHandler *(*);
 
-exclude       io.felux.playertags. and
-              io.felux.playertags.PlayerTags and
+exclude       com.codeitforyou.tags. and
+              com.codeitforyou.tags.CIFYTags and
 
-              io.felux.playertags.api. and
-              io.felux.playertags.api.* and
-              io.felux.playertags.api.* * and
-              io.felux.playertags.api.* * (*) and
+              com.codeitforyou.tags.api. and
+              com.codeitforyou.tags.api.* and
+              com.codeitforyou.tags.api.* * and
+              com.codeitforyou.tags.api.* * (*) and
 
-              io.felux.playertags.storage.*.*PlayerData and
-              io.felux.playertags.storage.*.*PlayerData * and
-              io.felux.playertags.storage.*.*PlayerData * (*)
+              com.codeitforyou.tags.storage.*.*PlayerData and
+              com.codeitforyou.tags.storage.*.*PlayerData * and
+              com.codeitforyou.tags.storage.*.*PlayerData * (*)
               ;
 
 obfuscate   obfuscateFlow=aggressive
@@ -35,4 +34,4 @@ obfuscate   obfuscateFlow=aggressive
             obfuscateReferenceStructures=inSpecialClass
             lineNumbers=scramble;
 
-saveAll     "server/plugins/%project.build.finalName%.%project.packaging%";
+saveAll     "D:/Documents/Minecraft/TestServer/plugins/%project.build.finalName%.%project.packaging%";
