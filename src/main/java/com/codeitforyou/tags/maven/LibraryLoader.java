@@ -123,7 +123,7 @@ public final class LibraryLoader {
     private static File getLibFolder() {
         File pluginDataFolder = JavaPlugin.getPlugin(CIFYTags.class).getDataFolder();
         File pluginsDir = pluginDataFolder.getParentFile();
-        File libs = new File(pluginsDir, "FeluxLibs");
+        File libs = new File(pluginsDir, "CIFYLibs");
         libs.mkdirs();
         return libs;
     }

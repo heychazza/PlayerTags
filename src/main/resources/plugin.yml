@@ -6,12 +6,6 @@ website: https://codeitforyou.com/
 description: "Let players use custom tag prefixes beside their name."
 softdepend: ["PlaceholderAPI"]
 
-commands:
-  cifytags:
-    description: ${plugin} commands
-    usage: ""
-    aliases: ["tags", "tag", "ptags"]
-
 permissions:
   cifytags.*:
     description: Gives access to all PlayerTags commands

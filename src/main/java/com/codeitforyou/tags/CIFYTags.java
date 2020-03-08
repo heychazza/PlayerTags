@@ -161,11 +161,16 @@ public class CIFYTags extends JavaPlugin {
 
         commandManager.setMainCommand(MainCommand.class);
 
+        List<String> aliases = Arrays.asList(getDescription().getName().toLowerCase(), "tags", "tag", "ptags");
+        aliases.forEach(commandManager::addAlias);
+
         CommandManager.Locale locale = commandManager.getLocale();
         locale.setNoPermission(Lang.COMMAND_NO_PERMISSION.asString(Lang.PREFIX.asString()));
         locale.setPlayerOnly(Lang.COMMAND_PLAYER_ONLY.asString(Lang.PREFIX.asString()));
         locale.setUsage(Lang.COMMAND_USAGE.asString(Lang.PREFIX.asString(), "{usage}"));
         locale.setUnknownCommand(Lang.COMMAND_INVALID.asString(Lang.PREFIX.asString()));
+
+        commandManager.register();
     }
 
     public TagManager getTagManager() {
