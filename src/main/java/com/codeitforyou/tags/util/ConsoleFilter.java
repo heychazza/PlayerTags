@@ -14,7 +14,7 @@ public class ConsoleFilter extends AbstractFilter {
 
     private static final long serialVersionUID = -5594073755007974254L;
 
-    private static List<String> hiddenLogs = Arrays.asList("creating table", "table statement changed", "/ormlite/core/VERSION.txt", "ORMLite", ".storage.sqlite", "closed connection #", "Xerial SQLite driver.", "/playerdata.db");
+    private static final List<String> hiddenLogs = Arrays.asList("creating table", "table statement changed", "/ormlite/core/VERSION.txt", "ORMLite", ".storage.sqlite", "closed connection #", "Xerial SQLite driver.", "/playerdata.db");
 
     private static Result validateMessage(Message message) {
         if (message == null) {
@@ -24,6 +24,8 @@ public class ConsoleFilter extends AbstractFilter {
     }
 
     private static Result validateMessage(String message) {
+        if (message == null) return Result.NEUTRAL;
+        if (hiddenLogs == null || hiddenLogs.isEmpty()) return Result.NEUTRAL;
         return hiddenLogs.stream().anyMatch(msg -> message.toLowerCase().contains(msg)) ? Result.DENY : Result.NEUTRAL;
     }
 

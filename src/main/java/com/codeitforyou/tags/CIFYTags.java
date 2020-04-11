@@ -126,8 +126,10 @@ public class CIFYTags extends JavaPlugin {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         final PlayerData playerData = PlayerData.get(player.getUniqueId());
                         if (playerData == null) continue;
+                        if (playerData.getTag() == null) continue;
+                        if (getTagManager().getTag(playerData.getTag()) == null) continue;
 
-                        if (playerData.getTag() != null && !getTagManager().getTag(playerData.getTag()).hasPermission(player)) {
+                        if (!getTagManager().getTag(playerData.getTag()).hasPermission(player)) {
                             playerData.setTag(null);
                         }
 
