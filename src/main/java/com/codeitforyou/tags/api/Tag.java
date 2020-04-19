@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tag {
-
     private String id;
     private String prefix;
     private String description;

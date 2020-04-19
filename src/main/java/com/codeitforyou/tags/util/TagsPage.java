@@ -24,7 +24,7 @@ import java.util.stream.IntStream;
 public class TagsPage extends Base {
 
     public TagsPage(CIFYTags plugin, Player player) {
-        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getTags(player, false).size(), (plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholders().size())), Size.from(plugin.getConfig().getInt("settings.gui.size", 9)));
+        super(plugin, Lang.GUI_TITLE.asString(Lang.PREFIX.asString(), plugin.getTagManager().getUnlockedTags(player).size(), (plugin.getTagManager().getTags().size() - plugin.getTagManager().getPlaceholders().size())), Size.from(plugin.getConfig().getInt("settings.gui.size", 9)));
         PlayerData playerData = plugin.getStorageHandler().getPlayer(player.getUniqueId());
 
         int guiSlots = plugin.getConfig().getInt("settings.gui.size", 27);
@@ -58,14 +58,10 @@ public class TagsPage extends Base {
             item.setItemMeta(itemMeta);
 
             if (playerData.getTag() != null && playerData.getTag().equalsIgnoreCase(tag.getId())) {
-                if (plugin.getConfig().getBoolean("settings.legacy", false)) {
-                    item = LegacyGlow.addGlow(item);
-                } else {
-                    item.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
-                    ItemMeta localItemMeta = item.getItemMeta();
-                    localItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    item.setItemMeta(localItemMeta);
-                }
+                item.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
+                ItemMeta localItemMeta = item.getItemMeta();
+                localItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                item.setItemMeta(localItemMeta);
             }
             Button tagBtn = new Button(item);
             if (hasPerm) tagBtn.setProperty("id", tag.getId());
